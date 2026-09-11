@@ -1,0 +1,363 @@
+{
+  "handoffVersion": 1,
+  "confirmedAt": "2026-08-23T19:14:14.436Z",
+  "problemText": "若干名战士排成8列的长方形队列，若增加120人或减少120人都能组成一个新的正方形队列，那么，原有战士（ ）人。",
+  "problemType": "word",
+  "boardFocus": "relation_understanding",
+  "relatedKnowledge": [
+    "正方形队列（方阵）：总人数 = 每边人数 × 每边人数，即总人数是一个完全平方数",
+    "长方形队列人数：总人数 = 列数 × 行数，本题列数为8，所以原有人数 = 8 × 行数",
+    "平方差公式：a² - b² = (a + b)(a - b)，用于将两个完全平方数的差转化为两个因数的乘积",
+    "因数分解与枚举：将240分解为两个偶数的乘积，枚举所有可能的因数对来求解"
+  ],
+  "knowledgeAnalysis": {
+    "suggestedGrade": "5-6年级",
+    "coreKnowledge": [
+      {
+        "knowledgeId": "kp_213",
+        "knowledgePoint": "植树问题 - 两端都植树",
+        "formula": "正方形队列总人数 = 每边人数²",
+        "examinationPoint": "植树问题",
+        "strategy": "植树问题的不同情形公式，包括两端植树、一端植树、两端不植树、封闭线路等。",
+        "commonMistakes": [
+          "植树问题中株数与段数混淆。"
+        ],
+        "summary": "两端都植树：株数=段数+1=全长÷株距+1。",
+        "rawKnowledgeRecord": {
+          "编号": "kp_213",
+          "学段": "4-6年级",
+          "系列": "特殊问题系列",
+          "类型": "植树问题",
+          "知识点": "植树问题 - 两端都植树",
+          "经典样题": "一条路长100米，每隔10米植一棵树，两端都植，共植多少棵？",
+          "考点": "植树问题",
+          "策略方法": [
+            "植树问题的不同情形公式，包括两端植树、一端植树、两端不植树、封闭线路等。"
+          ],
+          "讲解要点举例": "株数=段数+1=全长÷株距+1。",
+          "总结归纳": "两端都植树：株数=段数+1=全长÷株距+1。",
+          "易错点": [
+            "植树问题中株数与段数混淆。"
+          ]
+        }
+      },
+      {
+        "knowledgeId": "kp_171",
+        "knowledgePoint": "每份数×份数=总数",
+        "formula": "总人数 = 列数 × 每列人数",
+        "examinationPoint": "数量关系",
+        "strategy": "根据题目中的数量关系选择合适的公式进行计算。",
+        "commonMistakes": [
+          "份数与每份数混淆。"
+        ],
+        "summary": "总数=每份数×份数。",
+        "rawKnowledgeRecord": {
+          "编号": "kp_171",
+          "学段": "2-6年级",
+          "系列": "数量关系系列",
+          "类型": "基本数量关系",
+          "知识点": "每份数×份数=总数",
+          "经典样题": "每袋有5个苹果，3袋共有多少个苹果？",
+          "考点": "数量关系",
+          "策略方法": [
+            "根据题目中的数量关系选择合适的公式进行计算。"
+          ],
+          "讲解要点举例": "总数=每份数×份数。",
+          "总结归纳": "总数=每份数×份数。",
+          "易错点": [
+            "份数与每份数混淆。"
+          ]
+        }
+      },
+      {
+        "knowledgeId": "kp_194",
+        "knowledgePoint": "乘法分配律",
+        "formula": "a² - b² = (a+b)(a-b)",
+        "examinationPoint": "运算律",
+        "strategy": "灵活运用加法交换律、结合律、乘法交换律、结合律、分配律简化计算。",
+        "commonMistakes": [
+          "乘法分配律应用时分配对象错误。"
+        ],
+        "summary": "乘法分配律：a×(b+c)=a×b+a×c。",
+        "rawKnowledgeRecord": {
+          "编号": "kp_194",
+          "学段": "4-6年级",
+          "系列": "算术规则系列",
+          "类型": "运算律",
+          "知识点": "乘法分配律",
+          "经典样题": "2×(3+4)=2×3+2×4",
+          "考点": "运算律",
+          "策略方法": [
+            "灵活运用加法交换律、结合律、乘法交换律、结合律、分配律简化计算。"
+          ],
+          "讲解要点举例": "乘数分配到加法里。",
+          "总结归纳": "乘法分配律：a×(b+c)=a×b+a×c。",
+          "易错点": [
+            "乘法分配律应用时分配对象错误。"
+          ]
+        }
+      }
+    ],
+    "teachingFocus": "理解正方形队列即完全平方数，利用平方差公式将问题转化为因数枚举求解",
+    "keyFormulaList": [
+      "正方形队列：总人数 = n²",
+      "长方形队列：总人数 = 列数 × 行数",
+      "平方差公式：a² - b² = (a+b)(a-b)"
+    ],
+    "formulaHints": [
+      "正方形队列公式：总人数 = n²，已知是正方形队列则总人数必为完全平方数",
+      "长方形队列公式：总人数 = 列数 × 行数，本题列数为8，原有人数 = 8 × 行数",
+      "平方差公式：a² - b² = (a+b)(a-b)，当知道两个完全平方数的差时，可转化为两因数之积来枚举求解",
+      "因数枚举法：将差值240分解为两个偶数的乘积，枚举所有可能的(a+b)和(a-b)组合来求解"
+    ]
+  },
+  "suggestedGrade": "5-6年级",
+  "uncertainItems": [],
+  "suggestedLayout": {
+    "type": "left_right",
+    "reason": "无图形，竖版文本，使用左右布局",
+    "zones": [
+      {
+        "name": "topic",
+        "x": 6,
+        "y": 3,
+        "w": 88
+      },
+      {
+        "name": "analysis",
+        "x": 6,
+        "y": 18,
+        "w": 42
+      },
+      {
+        "name": "solution",
+        "x": 52,
+        "y": 18,
+        "w": 42
+      },
+      {
+        "name": "summary",
+        "x": 6,
+        "y": 82,
+        "w": 88
+      }
+    ]
+  },
+  "imageKind": "text_only",
+  "keepOriginal": false,
+  "coordinateSpec": {
+    "coordinateSystem": "百分比坐标（0—100），原点左上",
+    "format": {
+      "region": "区域：[左%, 上%, 宽%, 高%]，所有百分比最多保留 2 位小数",
+      "point": "起点/终点：[x%, y%]"
+    },
+    "example": "若分析区起手坐标为 (6%, 41%)，则动作点为 [6, 41]"
+  },
+  "zoneAnchors": {
+    "question": {
+      "label": {
+        "x": 5.7,
+        "y": 6.6,
+        "w": 7.1
+      },
+      "labelStartCoord": {
+        "x": 5.7,
+        "y": 6.6
+      },
+      "regionStartCoord": {
+        "x": 6,
+        "y": 13.32,
+        "w": 40.32,
+        "h": null
+      }
+    },
+    "analysis": {
+      "label": {
+        "x": 5.7,
+        "y": 34.5,
+        "w": 7.2
+      },
+      "labelStartCoord": {
+        "x": 5.7,
+        "y": 34.5
+      },
+      "regionStartCoord": {
+        "x": 6,
+        "y": 40.62,
+        "w": 44,
+        "h": 54.38
+      }
+    },
+    "solution": {
+      "label": {
+        "x": 53.7,
+        "y": 6.6,
+        "w": 7.4
+      },
+      "labelStartCoord": {
+        "x": 53.7,
+        "y": 6.6
+      },
+      "regionStartCoord": {
+        "x": 54,
+        "y": 14,
+        "w": 40,
+        "h": 44
+      }
+    },
+    "summary": {
+      "label": {
+        "x": 53.7,
+        "y": 62,
+        "w": 7.2
+      },
+      "labelStartCoord": {
+        "x": 53.7,
+        "y": 62
+      },
+      "regionStartCoord": {
+        "x": 54,
+        "y": 69.5,
+        "w": 40,
+        "h": 22
+      }
+    }
+  },
+  "topicLayout": {
+    "topicLabel": {
+      "x": 5.7,
+      "y": 6.6,
+      "w": 7.1
+    },
+    "question": {
+      "x": 6,
+      "y": 13.32,
+      "w": 40.32,
+      "fontSize": 29
+    },
+    "image": null,
+    "keepOriginal": false
+  },
+  "boardPlan": {
+    "canvas": {
+      "w": 1726,
+      "h": 980
+    },
+    "layoutMode": "portrait",
+    "topicBottomPct": 27.99,
+    "topicLabel": {
+      "x": 5.7,
+      "y": 6.6,
+      "w": 7.1
+    },
+    "question": {
+      "x": 6,
+      "y": 13.32,
+      "w": 40.32,
+      "fontSize": 29
+    },
+    "image": null,
+    "analysisLabel": {
+      "x": 5.7,
+      "y": 34.5,
+      "w": 7.2
+    },
+    "analysis": {
+      "x": 6,
+      "y": 40.62,
+      "w": 44,
+      "h": 54.38
+    },
+    "solutionLabel": {
+      "x": 53.7,
+      "y": 6.6,
+      "w": 7.4
+    },
+    "solution": {
+      "x": 54,
+      "y": 14,
+      "w": 40,
+      "h": 44
+    },
+    "summaryLabel": {
+      "x": 53.7,
+      "y": 62,
+      "w": 7.2
+    },
+    "summary": {
+      "x": 54,
+      "y": 69.5,
+      "w": 40,
+      "h": 22
+    },
+    "plannedAt": "2026-08-23T19:14:10.685Z",
+    "method": "verified-layout-rule",
+    "overflow": false
+  },
+  "canvasParams": {
+    "canvasSize": {
+      "width": 1726,
+      "height": 980,
+      "unit": "px",
+      "origin": "左上角(0,0), X向右Y向下"
+    },
+    "coordinateSystem": "百分比坐标 0-100",
+    "fontSize": {
+      "question": {
+        "px": 30,
+        "family": "Segoe UI/PingFang SC/Microsoft YaHei（印刷体）",
+        "color": "黑色"
+      },
+      "analysis": {
+        "px": 38,
+        "family": "LikeJianJianTi（手写尖尖体）",
+        "color": "红色"
+      },
+      "solution": {
+        "px": 38,
+        "family": "LikeJianJianTi（手写尖尖体）",
+        "color": "黑色"
+      },
+      "summary": {
+        "px": 38,
+        "family": "LikeJianJianTi（手写尖尖体）",
+        "color": "黑色"
+      }
+    },
+    "lineHeight": {
+      "question": 1.65,
+      "others": "约 1.7（下游渲染会做 1.55-1.85 微小随机，B 按平均值估算即可）"
+    },
+    "letterSpacing": {
+      "question": "0",
+      "others": "下游渲染参数：0-2px 微小随机（模拟手写感，B 不需要处理）"
+    },
+    "boardSpeed": "下游渲染参数：1秒约2个汉字，每行±10%轻微抖动（B 不需要处理速度细节）",
+    "actionSpeed": "差不多同样速度（rough-line/rough-arrow/rough-notation绘制速度）",
+    "lineHeightFormula": "每行高度(px)≈字号×行高；每行高度(%)=每行高度(px)/980×100。示例：32px×1.7=54.4px≈5.55%画布高度，即每写一行y约增5.5%"
+  },
+  "showGrid": true,
+  "agentPageName": "第1步 · 贴题识别",
+  "agentCapability": "multimodal",
+  "screenshotUrl": "/pic/shot-20260824-031413-938.jpg",
+  "knowledgeBasePath": "doc/knowledge-a.compact.json",
+  "stageRatioSuggestion": {
+    "type": "b",
+    "cuCode": "CU-03",
+    "category": "方法确定",
+    "topicExamples": "长方形&正方形(面积/周长)、平行四边形/梯形(面积)、植树、鸡兔同笼(假设)、归一、税率、利润利率、比和比例",
+    "suggestedRatio": {
+      "analysis": "5-15%",
+      "solution": "55-65%",
+      "summary": "5-10%",
+      "introAndClosing": "23%"
+    },
+    "essence": "解答绝对主体，标准结构",
+    "confidence": "high"
+  },
+  "commonMistakes": [
+    "不理解正方形队列意味着总人数是完全平方数，无法建立平方关系",
+    "不会用平方差公式将两个平方数的差转化为因数乘积来枚举求解",
+    "枚举因数对时遗漏条件：(a+b)和(a-b)必须同奇同偶，本题需均为偶数"
+  ]
+}

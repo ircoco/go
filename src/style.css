@@ -1,0 +1,266 @@
+:root {
+  color: #1f1f1f;
+  background: #f5f7fb;
+  font-family: "Segoe UI", "PingFang SC", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* 甲方画布锚 */
+  --canvas-design-w: 1726;
+  --canvas-design-h: 980;
+  --canvas-aspect: 1.7612;
+
+  /*
+   * 页面基础参数（夏夏：格局尽量不要一直变动）
+   * 注意：这里的“侧栏”指页内右列（预览旁/配置旁），不是全站左侧导航
+   */
+  --page-max-width: 1080px;
+  --page-padding-x: 24px;
+  --page-padding-y: 16px;
+  --header-height: 56px;
+  --header-padding-x: 24px;
+  --card-radius: 16px;
+  --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 32px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02);
+  --main-gap: 16px;
+  --board-preview-max: min(680px, 46vw);
+}
+
+* { box-sizing: border-box; }
+
+html, body, #app {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-width: 320px;
+  background: #f3f5f8;
+}
+
+button, input, textarea { font: inherit; }
+
+#app { min-height: 100vh; }
+
+.qh-page {
+  min-height: 100vh;
+  background: transparent;
+}
+
+.qh-page-header.ant-layout-header,
+.qh-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+  line-height: var(--header-height);
+  padding: 0 var(--header-padding-x);
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid #e8edf5;
+}
+
+.qh-page-content {
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: var(--page-padding-y) var(--page-padding-x) 28px;
+}
+
+.qh-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.qh-brand-mark {
+  font-weight: 700;
+  color: #1677ff;
+}
+
+.qh-surface-card.ant-card {
+  border-radius: var(--card-radius);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: var(--card-shadow);
+  background: #ffffff;
+}
+
+.qh-surface-card.ant-card .ant-card-head {
+  min-height: 52px;
+  padding: 0 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.qh-surface-card.ant-card .ant-card-body {
+  padding: 16px 20px;
+}
+
+/* 主按钮：Soft Structuralism 风格 */
+.ant-btn-primary {
+  border-radius: 999px;
+  height: 36px;
+  padding: 0 20px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(22, 119, 255, 0.15);
+  transition: transform 0.2s cubic-bezier(0.32, 0.72, 0, 1), box-shadow 0.2s cubic-bezier(0.32, 0.72, 0, 1), background-color 0.2s cubic-bezier(0.32, 0.72, 0, 1), border-color 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.ant-btn-primary:hover {
+  box-shadow: 0 4px 12px rgba(22, 119, 255, 0.25);
+  transform: translateY(-1px);
+}
+.ant-btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(22, 119, 255, 0.15);
+}
+.ant-btn-default {
+  border-radius: 999px;
+  height: 36px;
+  padding: 0 20px;
+  transition: transform 0.2s cubic-bezier(0.32, 0.72, 0, 1), background-color 0.2s cubic-bezier(0.32, 0.72, 0, 1), border-color 0.2s cubic-bezier(0.32, 0.72, 0, 1), color 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.ant-btn-default:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* 键盘焦点：仅 Tab 键导航时可见，鼠标用户无感知 */
+.ant-btn-primary:focus-visible,
+.ant-btn-default:focus-visible {
+  outline: 2px solid #1677ff;
+  outline-offset: 2px;
+}
+
+.qh-handoff-steps {
+  margin: 4px 0 20px;
+}
+
+.qh-handoff-stats {
+  margin-bottom: 16px;
+}
+
+.qh-handoff-stats .ant-statistic {
+  min-height: 72px;
+  padding: 10px 11px;
+  background: #f7f9fc;
+  border: 1px solid #edf1f6;
+  border-radius: 6px;
+}
+
+.qh-handoff-stats .ant-statistic-title {
+  margin-bottom: 4px;
+  color: #667085;
+}
+
+.qh-handoff-stats .ant-statistic-content {
+  color: #1f2937;
+  font-size: 16px;
+}
+
+/* 减少动效偏好：前庭功能障碍用户，禁用上浮和过渡 */
+@media (prefers-reduced-motion: reduce) {
+  .ant-btn-primary,
+  .ant-btn-default {
+    transition: none;
+  }
+  .ant-btn-primary:hover,
+  .ant-btn-default:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --page-max-width: 100%;
+    --board-preview-max: 100%;
+  }
+
+  .qh-page-header.ant-layout-header,
+  .qh-page-header {
+    height: auto;
+    min-height: var(--header-height);
+    padding: 8px 11px;
+    gap: 8px;
+    flex-wrap: wrap;
+    line-height: 1.4;
+  }
+
+  .qh-page-header .qh-brand {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .qh-page-header > .ant-space {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+/* ===== 全局容器换行保护（排除板书画布） ===== */
+/* 防止长文本、长URL、公式、代码等溢出容器 */
+.ant-card-body,
+.ant-descriptions-item-content,
+.ant-descriptions-item-label,
+.ant-table-tbody > tr > td,
+.ant-table-thead > tr > th,
+.ant-typography,
+.ant-tag,
+.qh-surface-card,
+.qh-handoff-stats .ant-statistic,
+.qh-section-title {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* 描述列表：长内容强制换行，不撑宽容器 */
+.ant-descriptions-item-content {
+  min-width: 0;
+}
+
+/* 表格单元格：允许内容在列宽内换行 */
+.ant-table-cell {
+  min-width: 0;
+}
+
+/* 夏夏极简半透明浅浅滑动条规范：针对 iframe、全局容器与 Ant Design 表格 */
+html, body, #app, .ant-table-body, .ant-table-content, .ant-table-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.16) transparent;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+#app::-webkit-scrollbar,
+.ant-table-body::-webkit-scrollbar,
+.ant-table-content::-webkit-scrollbar,
+.ant-table-container::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track,
+#app::-webkit-scrollbar-track,
+.ant-table-body::-webkit-scrollbar-track,
+.ant-table-content::-webkit-scrollbar-track,
+.ant-table-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb,
+#app::-webkit-scrollbar-thumb,
+.ant-table-body::-webkit-scrollbar-thumb,
+.ant-table-content::-webkit-scrollbar-thumb,
+.ant-table-container::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.16);
+  border-radius: 999px;
+}
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover,
+#app::-webkit-scrollbar-thumb:hover,
+.ant-table-body::-webkit-scrollbar-thumb:hover,
+.ant-table-content::-webkit-scrollbar-thumb:hover,
+.ant-table-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.32);
+}

@@ -1,0 +1,33 @@
+{
+  "problemText": "已知长方形的长是8厘米，宽是5厘米，求它的面积是多少平方厘米？",
+  "meta": {
+    "problemType": "几何图形",
+    "boardFocus": "图文结合"
+  },
+  "stats": {
+    "totalDuration": 120,
+    "stepCount": 5,
+    "charCount": 260
+  },
+  "rows": [
+    {
+      "id": 1,
+      "stage": "审题引入",
+      "duration": "15s",
+      "speech": "同学们好，今天我们来看这道关于长方形面积的题目。",
+      "board": "(6.0, 13.2) 已知长方形长为8厘米，宽为5厘米",
+      "actionSpec": []
+    },
+    {
+      "id": 2,
+      "stage": "知识链接",
+      "duration": "20s",
+      "speech": "先回忆一下长方形的面积公式等于长乘宽。",
+      "board": "(6.0, 41.0) 面积公式：S = a × b",
+      "actionSpec": []
+    }
+  ],
+  "projectCode": "20260906-033124-657",
+  "filename": "deliverable-20260906-033124-657.json",
+  "createdAt": "2026-09-06T03:31:24.657Z"
+}

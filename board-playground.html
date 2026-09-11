@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>画布参数测算台 · 完整组件 Copy</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .panel {
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 10px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: flex-end;
+    }
+    .panel label {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      font-size: 11px;
+      color: #666;
+    }
+    .panel input, .panel select {
+      padding: 3px 6px;
+      border: 1px solid #d9d9d9;
+      border-radius: 3px;
+      font-size: 12px;
+      min-width: 90px;
+    }
+    .panel input[type="color"] { padding: 1px; min-width: 36px; height: 26px; }
+    .panel textarea {
+      padding: 4px 8px;
+      border: 1px solid #d9d9d9;
+      border-radius: 3px;
+      font-size: 12px;
+      min-width: 280px;
+      resize: vertical;
+    }
+    .panel button {
+      padding: 5px 14px;
+      background: #1677ff;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .panel button:hover { background: #4096ff; }
+    .panel button.secondary { background: #666; }
+    .canvas-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow: auto;
+    }
+    /* === RealBoardPreview 样式（完整 copy） === */
+    .real-board-wrap { width: 1726px; height: 980px; margin: 0 auto; }
+    .board {
+      container-type: inline-size;
+      position: relative;
+      width: 1726px;
+      height: 980px;
+      margin: 0 auto;
+      overflow: hidden;
+      border: 1px solid #9ccfd9;
+      background: #fff;
+      box-shadow: 0 10px 28px rgba(24, 40, 42, 0.12);
+      user-select: none;
+    }
+    .board-layer { position: absolute; inset: 0; }
+    .board-layer-l1 { z-index: 0; background: #fff; pointer-events: none; }
+    .board-layer-l3 { z-index: 2; background: transparent; pointer-events: none; }
+    .board-layer-l4 { z-index: 3; background: transparent; pointer-events: none; }
+    .board-paper { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
+    .rough-drawing-layer { position: absolute; inset: 0; z-index: 4; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+    .annotation-layer { position: absolute; inset: 0; z-index: 5; pointer-events: none; }
+    /* === BoardContentLayer 样式（完整 copy） === */
+    .board-content-layer { position: absolute; inset: 0; z-index: 1; background: transparent; pointer-events: none; }
+    .board-item { position: absolute; z-index: 3; }
+    .label img { display: block; width: 100%; height: auto; pointer-events: none; }
+    .topic-image { overflow: hidden; z-index: 3; background: transparent; }
+    .topic-image img { display: block; width: 100%; max-height: 100%; object-fit: contain; object-position: left top; filter: grayscale(1) contrast(1.05); pointer-events: none; }
+    .topic-text { z-index: 4; color: #1f1f1f; line-height: 1.65; white-space: pre-wrap; word-break: break-word; font-weight: 500; }
+    .topic-text .katex { font-size: 1.0em; }
+    .guide { position: absolute; z-index: 2; border: 1px dashed rgba(14,165,233,.35); background: transparent; border-radius: 8px; pointer-events: none; }
+    .guide.solution { border-color: rgba(16,185,129,.35); }
+    .guide.summary { border-color: rgba(168,85,247,.35); }
+    .grid-layer { position: absolute; inset: 0; z-index: 5; pointer-events: none; }
+    .grid-line { position: absolute; }
+    .grid-line.v { top: 0; bottom: 0; width: 0; border-left: 1px solid rgba(15,23,42,.05); }
+    .grid-line.h { left: 0; right: 0; height: 0; border-top: 1px solid rgba(15,23,42,.05); }
+    .grid-line.major.v { border-left-color: rgba(22,119,255,.22); }
+    .grid-line.major.h { border-top-color: rgba(22,119,255,.22); }
+    .tick { position: absolute; top: 2px; left: 2px; font-size: 9px; color: #2563eb; background: rgba(255,255,255,.7); padding: 0 2px; }
+    .tick.y { top: auto; bottom: 2px; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="panel">
+      <label>题文字体
+        <select v-model="params.fontFamily">
+          <option value="system-ui">系统默认</option>
+          <option value="'PingFang SC', sans-serif">苹方</option>
+          <option value="'Microsoft YaHei', sans-serif">微软雅黑</option>
+          <option value="'SimSun', serif">宋体</option>
+          <option value="'KaiTi', serif">楷体</option>
+          <option value="cursive">手写体</option>
+        </select>
+      </label>
+      <label>题文字号(px)
+        <input type="number" v-model.number="params.fontSize" min="10" max="48" />
+      </label>
+      <label>行高
+        <input type="number" v-model.number="params.lineHeight" min="1" max="3" step="0.1" />
+      </label>
+      <label>文字颜色
+        <input type="color" v-model="params.textColor" />
+      </label>
+      <label>题目文本
+        <textarea v-model="params.problemText" rows="2" placeholder="输入题目测试..."></textarea>
+      </label>
+      <label><input type="checkbox" v-model="params.showGrid" /> 网格线</label>
+      <label><input type="checkbox" v-model="params.showAllLabels" /> 四标签</label>
+      <label><input type="checkbox" v-model="params.showZoneGuides" /> 分区线</label>
+      <button @click="applyParams">应用参数</button>
+      <button class="secondary" @click="resetParams">重置</button>
+    </div>
+    <div class="canvas-wrap">
+      <real-board-preview
+        :problem-text="params.problemText"
+        :show-grid="params.showGrid"
+        :show-all-labels="params.showAllLabels"
+        :show-zone-guides="params.showZoneGuides"
+        :font-family="params.fontFamily"
+        :font-size="params.fontSize"
+        :line-height="params.lineHeight"
+        :text-color="params.textColor"
+      />
+    </div>
+  </div>
+
+  <script>
+    const { createApp, ref, computed, onMounted, onBeforeUnmount, watch, nextTick, defineComponent, h } = Vue
+
+    // === canvasCoords.js（完整 copy） ===
+    const CANVAS_W = 1726
+    const CANVAS_H = 980
+    const TABLE_REF_W = 1892
+    const TABLE_REF_H = 1044
+
+    function buildGridLines() {
+      const minor = []
+      const major = []
+      for (let p = 5; p < 100; p += 5) {
+        const item = { p, major: p % 10 === 0 }
+        if (item.major) major.push(item)
+        else minor.push(item)
+      }
+      return { minor, major }
+    }
+
+    // === boardLayout.js（核心部分 copy） ===
+    const BOARD_SAFE_X_PCT = 6
+    const BOARD_RIGHT_LIMIT_PCT = 94
+    const BOARD_BOTTOM_LIMIT_PCT = 95
+    const BOARD_HORIZONTAL_GAP_PCT = 4
+    const PORTRAIT_LEFT_W_PCT = 44
+    const PORTRAIT_RIGHT_X_PCT = BOARD_SAFE_X_PCT + PORTRAIT_LEFT_W_PCT + BOARD_HORIZONTAL_GAP_PCT
+    const PORTRAIT_RIGHT_W_PCT = BOARD_RIGHT_LIMIT_PCT - PORTRAIT_RIGHT_X_PCT
+
+    const BOARD_LAYOUT = {
+      topicLabel: { x: 5.7, y: 6.6, w: 7.1 },
+      question: { x: 6.0, y: 13.2, w: PORTRAIT_LEFT_W_PCT, fontSize: 30 },
+      analysisLabel: { x: 5.7, y: 34.5, w: 7.2 },
+      analysis: { x: BOARD_SAFE_X_PCT, y: 41.0, w: PORTRAIT_LEFT_W_PCT, h: 48 },
+      solutionLabel: { x: PORTRAIT_RIGHT_X_PCT - 0.3, y: 6.6, w: 7.4 },
+      solution: { x: PORTRAIT_RIGHT_X_PCT, y: 14.0, w: PORTRAIT_RIGHT_W_PCT, h: 44 },
+      summaryLabel: { x: PORTRAIT_RIGHT_X_PCT - 0.3, y: 62.0, w: 7.2 },
+      summary: { x: PORTRAIT_RIGHT_X_PCT, y: 69.5, w: PORTRAIT_RIGHT_W_PCT, h: 22 },
+    }
+
+    function pctBox(style = {}) {
+      const out = { left: style.x + '%', top: style.y + '%', width: style.w + '%' }
+      if (style.h != null) out.height = style.h + '%'
+      return out
+    }
+
+    function limitTopicImageHeightPct(image = {}) {
+      const startY = Number(image.y || 0)
+      return Math.max(0, BOARD_BOTTOM_LIMIT_PCT - startY)
+    }
+
+    // === mathText.js（核心部分 copy，依赖全局 katex） ===
+    const LATEX_HINT = /\\[a-zA-Z]|[_^]\{|\$\$|\$|\\\(|\\\[/
+    const CJK = /[\u4e00-\u9fff\uff00-\uffef]/
+    const SIMPLE_FRACTION = /(^|[^\w./])(\d+)\/(\d+)(?=$|[^\w./])/g
+
+    function escapeHtml(s) {
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+    }
+
+    function promoteSimpleFractions(text) {
+      return String(text || '').replace(SIMPLE_FRACTION, '$1\\frac{$2}{$3}')
+    }
+
+    function renderKatex(math, displayMode = false) {
+      try {
+        return katex.renderToString(math, { throwOnError: false, output: 'html', strict: 'ignore', displayMode, trust: false })
+      } catch { return escapeHtml(math) }
+    }
+
+    function renderDelimited(text) {
+      const src = String(text || '')
+      const parts = []
+      let i = 0
+      while (i < src.length) {
+        if (src.startsWith('$$', i)) {
+          const end = src.indexOf('$$', i + 2)
+          if (end > i) { parts.push(renderKatex(src.slice(i + 2, end).trim(), true)); i = end + 2; continue }
+        }
+        if (src[i] === '$') {
+          const end = src.indexOf('$', i + 1)
+          if (end > i) { parts.push(renderKatex(src.slice(i + 1, end).trim(), false)); i = end + 1; continue }
+        }
+        if (src.startsWith('\\[', i)) {
+          const end = src.indexOf('\\]', i + 2)
+          if (end > i) { parts.push(renderKatex(src.slice(i + 2, end).trim(), true)); i = end + 2; continue }
+        }
+        if (src.startsWith('\\(', i)) {
+          const end = src.indexOf('\\)', i + 2)
+          if (end > i) { parts.push(renderKatex(src.slice(i + 2, end).trim(), false)); i = end + 2; continue }
+        }
+        let j = i + 1
+        while (j < src.length) {
+          if (src.startsWith('$$', j) || src[j] === '$' || src.startsWith('\\[', j) || src.startsWith('\\(', j)) break
+          if (src[j] === '\\' && j + 1 < src.length && /[a-zA-Z]/.test(src[j + 1])) break
+          j++
+        }
+        const chunk = src.slice(i, j)
+        if (chunk.includes('\\') && LATEX_HINT.test(chunk)) parts.push(renderMixedBareLatex(chunk))
+        else parts.push(escapeHtml(chunk).replace(/\n/g, '<br>'))
+        i = j
+      }
+      return parts.join('')
+    }
+
+    function renderMixedBareLatex(text) {
+      const parts = []
+      let i = 0
+      const src = String(text || '')
+      while (i < src.length) {
+        if (src[i] === '\\' && i + 1 < src.length && /[a-zA-Z]/.test(src[i + 1])) {
+          let j = i, depth = 0
+          while (j < src.length) {
+            const ch = src[j]
+            if (ch === '{') { depth++; j++; continue }
+            if (ch === '}') { depth--; j++; continue }
+            if (depth === 0 && CJK.test(ch)) break
+            if (depth === 0 && j > i + 1 && /[\s，。；：！？、]/.test(ch)) break
+            j++
+          }
+          while (j < src.length && /[\^_]/.test(src[j])) {
+            j++
+            if (src[j] === '{') {
+              let d = 0
+              while (j < src.length) { if (src[j] === '{') d++; if (src[j] === '}') { d--; j++; if (d === 0) break; continue } j++ }
+            } else if (src[j]) j++
+          }
+          parts.push(renderKatex(src.slice(i, j).trim(), false))
+          i = j
+        } else {
+          let j = i
+          while (j < src.length && !(src[j] === '\\' && j + 1 < src.length && /[a-zA-Z]/.test(src[j + 1]))) j++
+          parts.push(escapeHtml(src.slice(i, j)).replace(/\n/g, '<br>'))
+          i = j
+        }
+      }
+      return parts.join('')
+    }
+
+    function renderProblemHtml(text) {
+      const raw = String(text || '').trim()
+      if (!raw) return ''
+      const promoted = promoteSimpleFractions(raw)
+      if (!LATEX_HINT.test(promoted) && !/\d+\/\d+/.test(raw)) return escapeHtml(raw).replace(/\n/g, '<br>')
+      return renderDelimited(promoted)
+    }
+
+    // === BoardContentLayer 组件（完整 copy） ===
+    const BoardContentLayer = defineComponent({
+      name: 'BoardContentLayer',
+      props: {
+        problemText: { type: String, default: '' },
+        boardPlan: { type: Object, default: null },
+        topicLayout: { type: Object, default: null },
+        showGrid: { type: Boolean, default: false },
+        showAllLabels: { type: Boolean, default: false },
+        showZoneGuides: { type: Boolean, default: false },
+        sourceImageUrl: { type: String, default: '' },
+        keepOriginal: { type: Boolean, default: false },
+        fontFamily: { type: String, default: '"Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif' },
+        fontSize: { type: Number, default: 30 },
+        lineHeight: { type: Number, default: 1.65 },
+        textColor: { type: String, default: '#1f1f1f' },
+      },
+      setup(props) {
+        const layerRef = ref(null)
+        const topicContentRef = ref(null)
+        const grid = buildGridLines()
+
+        const plan = computed(() => {
+          if (props.boardPlan?.topicLabel || props.boardPlan?.question) return props.boardPlan
+          return {
+            topicLabel: props.topicLayout?.topicLabel || BOARD_LAYOUT.topicLabel,
+            question: props.topicLayout?.question || BOARD_LAYOUT.question,
+            image: props.topicLayout?.image || null,
+            analysisLabel: BOARD_LAYOUT.analysisLabel,
+            analysis: BOARD_LAYOUT.analysis,
+            solutionLabel: BOARD_LAYOUT.solutionLabel,
+            solution: BOARD_LAYOUT.solution,
+            summaryLabel: BOARD_LAYOUT.summaryLabel,
+            summary: BOARD_LAYOUT.summary,
+          }
+        })
+
+        const problemHtml = computed(() => renderProblemHtml(props.problemText || ''))
+        const showExtraLabels = computed(() => props.showAllLabels || Boolean(props.boardPlan?.analysisLabel))
+        const topicImageMaxHeight = computed(() => limitTopicImageHeightPct(plan.value.image))
+        const topicTextStyle = computed(() => ({
+          ...pctBox(plan.value.question),
+          fontSize: `calc(${props.fontSize} * 1cqw / 17.26)`,
+          fontFamily: props.fontFamily,
+          lineHeight: props.lineHeight,
+          color: props.textColor,
+        }))
+
+        return { layerRef, topicContentRef, grid, plan, problemHtml, showExtraLabels, topicImageMaxHeight, topicTextStyle }
+      },
+      template: `
+        <div ref="layerRef" class="board-content-layer" data-board-layer="L2">
+          <div v-if="problemText.trim() || showExtraLabels" class="board-item label" :style="pctBox(plan.topicLabel)">
+            <img src="/topic.png" alt="题目" draggable="false" onerror="this.style.display='none'" />
+          </div>
+          <div
+            v-if="problemText.trim() && !(keepOriginal && sourceImageUrl)"
+            ref="topicContentRef"
+            class="board-item topic-text"
+            data-board-region="question"
+            :style="topicTextStyle"
+            v-html="problemHtml"
+          />
+          <template v-if="showExtraLabels">
+            <div class="board-item label" :style="pctBox(plan.analysisLabel)">
+              <img src="/analysis.png" alt="分析" draggable="false" onerror="this.style.display='none'" />
+            </div>
+            <div class="board-item label" :style="pctBox(plan.solutionLabel)">
+              <img src="/solution.png" alt="解答" draggable="false" onerror="this.style.display='none'" />
+            </div>
+            <div class="board-item label" :style="pctBox(plan.summaryLabel)">
+              <img src="/summary.png" alt="总结" draggable="false" onerror="this.style.display='none'" />
+            </div>
+          </template>
+          <template v-if="showZoneGuides && showExtraLabels">
+            <div class="guide analysis" :style="pctBox(plan.analysis)" />
+            <div class="guide solution" :style="pctBox(plan.solution)" />
+            <div class="guide summary" :style="pctBox(plan.summary)" />
+          </template>
+          <div v-if="showGrid" class="grid-layer">
+            <div v-for="g in grid.minor" :key="'vm'+g.p" class="grid-line v minor" :style="{ left: g.p + '%' }" />
+            <div v-for="g in grid.major" :key="'vM'+g.p" class="grid-line v major" :style="{ left: g.p + '%' }">
+              <span class="tick">{{ g.p }}</span>
+            </div>
+            <div v-for="g in grid.minor" :key="'hm'+g.p" class="grid-line h minor" :style="{ top: g.p + '%' }" />
+            <div v-for="g in grid.major" :key="'hM'+g.p" class="grid-line h major" :style="{ top: g.p + '%' }">
+              <span class="tick y">{{ g.p }}</span>
+            </div>
+          </div>
+        </div>
+      `
+    })
+
+    // === RealBoardPreview 组件（完整 copy） ===
+    const RealBoardPreview = defineComponent({
+      name: 'RealBoardPreview',
+      props: {
+        canvasImageUrl: { type: String, default: '/canvas.png' },
+        problemText: { type: String, default: '' },
+        boardPlan: { type: Object, default: null },
+        topicLayout: { type: Object, default: null },
+        showGrid: { type: Boolean, default: false },
+        showAllLabels: { type: Boolean, default: false },
+        showZoneGuides: { type: Boolean, default: false },
+        interactive: { type: Boolean, default: false },
+        sourceImageUrl: { type: String, default: '' },
+        keepOriginal: { type: Boolean, default: false },
+        actionSpec: { type: Array, default: () => [] },
+        autoPlay: { type: Boolean, default: true },
+        fontFamily: { type: String, default: '"Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif' },
+        fontSize: { type: Number, default: 30 },
+        lineHeight: { type: Number, default: 1.65 },
+        textColor: { type: String, default: '#1f1f1f' },
+      },
+      setup(props) {
+        const boardRef = ref(null)
+        const roughSvgRef = ref(null)
+        const hover = ref(null)
+
+        function onMove(e) {
+          if (!props.interactive) return
+          const rect = e.currentTarget.getBoundingClientRect()
+          const xPct = ((e.clientX - rect.left) / rect.width) * 100
+          const yPct = ((e.clientY - rect.top) / rect.height) * 100
+          hover.value = {
+            xPct: xPct.toFixed(1), yPct: yPct.toFixed(1),
+            px: Math.round((xPct / 100) * CANVAS_W), py: Math.round((yPct / 100) * CANVAS_H),
+          }
+        }
+        function onLeave() { hover.value = null }
+
+        return { boardRef, roughSvgRef, hover, onMove, onLeave, DESIGN_W: CANVAS_W, DESIGN_H: CANVAS_H }
+      },
+      template: `
+        <div class="real-board-wrap">
+          <div ref="boardRef" class="board" :class="{ interactive }" data-board-canvas="true"
+            @mousemove="onMove" @mouseleave="onLeave">
+            <div class="board-layer board-layer-l1" data-board-layer="L1">
+              <img class="board-paper" :src="canvasImageUrl" alt="甲方画布" draggable="false" onerror="this.style.display='none'" />
+            </div>
+            <board-content-layer
+              :problem-text="problemText"
+              :board-plan="boardPlan"
+              :topic-layout="topicLayout"
+              :show-grid="showGrid"
+              :show-all-labels="showAllLabels"
+              :show-zone-guides="showZoneGuides"
+              :source-image-url="sourceImageUrl"
+              :keep-original="keepOriginal"
+              :font-family="fontFamily"
+              :font-size="fontSize"
+              :line-height="lineHeight"
+              :text-color="textColor"
+            />
+            <div class="board-layer board-layer-l3" data-board-layer="L3">
+              <svg ref="roughSvgRef" class="rough-drawing-layer" :viewBox="'0 0 ' + DESIGN_W + ' ' + DESIGN_H" preserveAspectRatio="none" aria-hidden="true" />
+              <div class="annotation-layer" data-board-overlay="annotations" aria-hidden="true" />
+            </div>
+            <div class="board-layer board-layer-l4" data-board-layer="L4" aria-hidden="true" />
+            <div v-if="hover" class="hover-readout">
+              画布({{ hover.px }},{{ hover.py }})px / ({{ hover.xPct }},{{ hover.yPct }})%
+            </div>
+          </div>
+        </div>
+      `
+    })
+
+    // === 主应用 ===
+    const STORAGE_KEY = 'qinghuabu.live-board-preview'
+
+    function loadLiveState() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') } catch { return null }
+    }
+
+    function applyLiveState(state, params) {
+      if (!state) return
+      if (state.problemText != null) params.problemText = state.problemText
+      if (state.showGrid != null) params.showGrid = Boolean(state.showGrid)
+      if (state.showLabels != null) params.showAllLabels = Boolean(state.showLabels)
+      if (state.showZones != null) params.showZoneGuides = Boolean(state.showZones)
+    }
+
+    const App = {
+      components: { RealBoardPreview, BoardContentLayer },
+      setup() {
+        const params = ref({
+          fontFamily: '"Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif',
+          fontSize: 30,
+          lineHeight: 1.65,
+          textColor: '#1f1f1f',
+          problemText: '',
+          showGrid: false,
+          showAllLabels: false,
+          showZoneGuides: false,
+        })
+
+        // 启动时从 localStorage 读取原程序数据
+        const live = loadLiveState()
+        if (live) applyLiveState(live, params.value)
+
+        // 监听原程序修改，实时同步
+        function onStorage(e) {
+          if (e.key === STORAGE_KEY && e.storageArea === localStorage) {
+            applyLiveState(loadLiveState(), params.value)
+          }
+        }
+        window.addEventListener('storage', onStorage)
+        onBeforeUnmount(() => window.removeEventListener('storage', onStorage))
+
+        function applyParams() { /* 响应式自动生效 */ }
+        function resetParams() {
+          params.value = {
+            fontFamily: '"Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif',
+            fontSize: 30, lineHeight: 1.65, textColor: '#1f1f1f',
+            problemText: '', showGrid: false, showAllLabels: false, showZoneGuides: false,
+          }
+        }
+
+        return { params, applyParams, resetParams }
+      }
+    }
+
+    createApp(App).mount('#app')
+  </script>
+</body>
+</html>

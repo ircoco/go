@@ -1,0 +1,8 @@
+{
+  "name": "Remix Copy of -googel",
+  "description": "Imported from GitHub: zo4xia/-googel",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,260 @@
+{
+  "handoffVersion": 1,
+  "confirmedAt": "2026-08-21T16:08:16.398Z",
+  "problemText": "3. 王叔叔买了一套125平方米的房子，房价是140万。请你帮他算一算，过户时要缴纳契税和交易手续费共多少钱？\n①交易手续费：6元/平方米。\n②契税：90平方米以下按房价的1%缴纳，90~140平方米按房价的1.5%缴纳，140平方米以上按房价的3%缴纳。",
+  "problemType": "word",
+  "boardFocus": "relation_understanding",
+  "relatedKnowledge": [
+    {
+      "编号": "kp_fee_1",
+      "学段": "4-6年级",
+      "系列": "百分数应用系列",
+      "类型": "分段计费",
+      "知识点": "分段计费问题",
+      "考点": "根据条件判断所属区间，分别计算后再求和",
+      "策略方法": "先判断数值落在哪个区间，再按对应标准计算，最后把各部分结果相加",
+      "讲解要点举例": "本题中125平方米落在90~140平方米区间，契税按1.5%计算",
+      "易错点": "忘记分段，直接用最高税率计算全部；搞混标准量和超标量"
+    },
+    {
+      "编号": "kp_fee_2",
+      "学段": "4-6年级",
+      "系列": "百分数应用系列",
+      "类型": "百分数乘法",
+      "知识点": "求一个数的百分之几是多少",
+      "考点": "用乘法计算百分数应用题",
+      "策略方法": "求一个数的百分之几，用这个数乘百分数，即：结果=总数×百分率",
+      "讲解要点举例": "140万的1.5% = 1400000×1.5% = 21000元",
+      "易错点": "百分数转化为小数时出错；忘记把万换算成元"
+    },
+    {
+      "编号": "kp_fee_3",
+      "学段": "3-4年级",
+      "系列": "乘法应用系列",
+      "类型": "单价×数量=总价",
+      "知识点": "单价、数量、总价的关系",
+      "考点": "已知单价和数量求总价",
+      "策略方法": "总价=单价×数量",
+      "讲解要点举例": "交易手续费=6元/平方米×125平方米=750元",
+      "易错点": "单位不统一时忘记换算"
+    }
+  ],
+  "knowledgeAnalysis": {
+    "teachingFocus": "掌握分段计费问题的解题思路：先判断面积所在区间确定契税税率，再分别计算交易手续费和契税，最后相加求总费用",
+    "keyFormulaList": [
+      "交易手续费=单价×面积",
+      "契税=房价×税率",
+      "总费用=交易手续费+契税"
+    ],
+    "formulaHints": [
+      "交易手续费公式：手续费=单价×面积，已知单价6元/平方米和面积125平方米，用乘法计算",
+      "契税公式：契税=房价×税率，已知房价140万，需先判断125平方米落在90~140平方米区间，税率为1.5%",
+      "分段计费：契税按面积分档，125平方米在第二档（90~140平方米），适用1.5%税率，不是直接用最高税率3%",
+      "总费用公式：总费用=交易手续费+契税，两部分费用相加"
+    ]
+  },
+  "suggestedGrade": "",
+  "uncertainItems": [],
+  "suggestedLayout": null,
+  "imageKind": "text_only",
+  "keepOriginal": false,
+  "coordinateSpec": {
+    "coordinateSystem": "百分比坐标（0—100），原点左上",
+    "format": {
+      "region": "区域：[左%, 上%, 宽%, 高%]，所有百分比最多保留 2 位小数",
+      "point": "起点/终点：[x%, y%]"
+    },
+    "example": "若分析区起手坐标为 (6%, 41%)，则动作点为 [6, 41]"
+  },
+  "zoneAnchors": {
+    "question": {
+      "label": {
+        "x": 5.7,
+        "y": 6.6,
+        "w": 7.1
+      },
+      "labelStartCoord": {
+        "x": 5.7,
+        "y": 6.6
+      },
+      "regionStartCoord": {
+        "x": 6,
+        "y": 13.2,
+        "w": 40.4,
+        "h": null
+      }
+    },
+    "analysis": {
+      "label": {
+        "x": 5.7,
+        "y": 50.68,
+        "w": 7.2
+      },
+      "labelStartCoord": {
+        "x": 5.7,
+        "y": 50.68
+      },
+      "regionStartCoord": {
+        "x": 6,
+        "y": 56.8,
+        "w": 44,
+        "h": 38.2
+      }
+    },
+    "solution": {
+      "label": {
+        "x": 53.7,
+        "y": 6.6,
+        "w": 7.4
+      },
+      "labelStartCoord": {
+        "x": 53.7,
+        "y": 6.6
+      },
+      "regionStartCoord": {
+        "x": 54,
+        "y": 14,
+        "w": 40,
+        "h": 44
+      }
+    },
+    "summary": {
+      "label": {
+        "x": 53.7,
+        "y": 62,
+        "w": 7.2
+      },
+      "labelStartCoord": {
+        "x": 53.7,
+        "y": 62
+      },
+      "regionStartCoord": {
+        "x": 54,
+        "y": 69.5,
+        "w": 40,
+        "h": 22
+      }
+    }
+  },
+  "topicLayout": {
+    "topicLabel": {
+      "x": 5.7,
+      "y": 6.6,
+      "w": 7.1
+    },
+    "question": {
+      "x": 6,
+      "y": 13.2,
+      "w": 40.4,
+      "fontSize": 30
+    },
+    "image": null,
+    "keepOriginal": false
+  },
+  "boardPlan": {
+    "canvas": {
+      "w": 1726,
+      "h": 980
+    },
+    "layoutMode": "portrait",
+    "topicBottomPct": 48.68,
+    "topicLabel": {
+      "x": 5.7,
+      "y": 6.6,
+      "w": 7.1
+    },
+    "question": {
+      "x": 6,
+      "y": 13.2,
+      "w": 40.4,
+      "fontSize": 30
+    },
+    "image": null,
+    "analysisLabel": {
+      "x": 5.7,
+      "y": 50.68,
+      "w": 7.2
+    },
+    "analysis": {
+      "x": 6,
+      "y": 56.8,
+      "w": 44,
+      "h": 38.2
+    },
+    "solutionLabel": {
+      "x": 53.7,
+      "y": 6.6,
+      "w": 7.4
+    },
+    "solution": {
+      "x": 54,
+      "y": 14,
+      "w": 40,
+      "h": 44
+    },
+    "summaryLabel": {
+      "x": 53.7,
+      "y": 62,
+      "w": 7.2
+    },
+    "summary": {
+      "x": 54,
+      "y": 69.5,
+      "w": 40,
+      "h": 22
+    },
+    "plannedAt": "2026-08-21T16:08:13.173Z",
+    "method": "topic-aware-layout-rule",
+    "overflow": false
+  },
+  "canvasParams": {
+    "canvasSize": {
+      "width": 1726,
+      "height": 980,
+      "unit": "px",
+      "origin": "左上角(0,0), X向右Y向下"
+    },
+    "coordinateSystem": "百分比坐标 0-100",
+    "fontSize": {
+      "question": {
+        "px": 30,
+        "family": "Segoe UI/PingFang SC/Microsoft YaHei（印刷体）",
+        "color": "黑色"
+      },
+      "analysis": {
+        "px": 32,
+        "family": "LikeJianJianTi（手写尖尖体）",
+        "color": "红色"
+      },
+      "solution": {
+        "px": 32,
+        "family": "LikeJianJianTi（手写尖尖体）",
+        "color": "黑色"
+      },
+      "summary": {
+        "px": 32,
+        "family": "LikeJianJianTi（手写尖尖体）",
+        "color": "黑色"
+      }
+    },
+    "lineHeight": {
+      "question": 1.65,
+      "others": "1.6-1.8 微小随机（不用管，按正常行高估算约1.7）"
+    },
+    "boardSpeed": "1秒2个汉字（手写字体书写速度）",
+    "actionSpeed": "差不多同样速度（rough-line/rough-arrow/rough-notation绘制速度）",
+    "lineHeightFormula": "每行高度(px)≈字号×行高；每行高度(%)=每行高度(px)/980×100。示例：32px×1.7=54.4px≈5.55%画布高度，即每写一行y约增5.5%"
+  },
+  "showGrid": true,
+  "agentPageName": "第1步 · 贴题识别",
+  "agentCapability": "multimodal",
+  "screenshotUrl": null,
+  "knowledgeBasePath": "doc/knowledge-a.compact.json",
+  "stageRatioSuggestion": null,
+  "commonMistakes": [
+    "忘记分段，直接用最高税率3%计算全部契税",
+    "搞混面积区间，125平方米应属于90~140平方米档（1.5%），不是140平方米以上档（3%）",
+    "计算契税时忘记把140万换算成1400000元再乘百分数",
+    "只算了一部分费用就结束，忘记把交易手续费和契税加起来"
+  ]
+}
