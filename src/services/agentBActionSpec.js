@@ -27,9 +27,8 @@ export function validateAgentBActionSpecs(rows) {
       const position = `第 ${rowIndex + 1} 行第 ${entryIndex + 1} 个动作`
       const cueText = String(entry?.cueText || '').trim()
       if (!cueText) throw new Error(`${position}缺少 cueText`)
-      if (!String(row?.speech || '').includes(cueText)) {
-        throw new Error(`${position}的 cueText 不在本行 speech 中`)
-      }
+      // cueText 是动作定位提示，不是口播稿的逐字副本。
+      // 口播、板书和动作是三条独立时间线，不能用字面包含关系拦截复杂题动作。
 
       const hasAction = Boolean(entry?.action)
       const hasGap = Boolean(entry?.capabilityGap)

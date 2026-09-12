@@ -1,5 +1,6 @@
 /* @qh-core LANE=B-V2 POINT=CONTRACT_NORMALIZE model rows into board-readable fields */
 import { validateBoardToolAction } from '../board-tools/boardToolCatalog.js'
+import { BOARD_LAYOUT } from '../utils/boardLayout.js'
 export const AGENT_B_V2_COLUMNS = Object.freeze([
   'stage',
   'speech',
@@ -149,11 +150,13 @@ export function sanitizeRowLayout(rows, options = {}) {
   const isPixel = coordinateMode === 'pixel'
 
   // 四区缺省坐标基准 (百分比)
+  // 只有 handoff.boardPlan 是动态布局输入；这里仅把已验证的公共布局作为兜底，
+  // 避免合同层再维护一套会覆盖真实 boardPlan 的坐标真相。
   const defaultZoneBounds = {
-    question: { x: 6, y: 12, w: 88, h: 22 },
-    analysis: { x: 8, y: 38, w: 42, h: 56 },
-    solution: { x: 55, y: 12, w: 40, h: 52 },
-    summary: { x: 55, y: 68, w: 40, h: 26 },
+    question: BOARD_LAYOUT.question,
+    analysis: BOARD_LAYOUT.analysis,
+    solution: BOARD_LAYOUT.solution,
+    summary: BOARD_LAYOUT.summary,
   }
 
   const getBounds = (stageKey) => {

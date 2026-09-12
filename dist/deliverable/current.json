@@ -1,0 +1,424 @@
+{
+  "projectCode": "20260912-002723-873",
+  "filename": "deliverable-20260912-002723-873.json",
+  "htmlFilename": "deliverable-20260912-002723-873.html",
+  "createdAt": "2026-09-12T00:27:23.873Z",
+  "deliverable": {
+    "problemText": "若干名战士排成8列的长方形队列，若增加120人或减少120人都能组成一个新的正方形队列，那么，原有战士（ ）人。",
+    "sourceImageUrl": "",
+    "keepOriginal": false,
+    "topicLayout": {
+      "topicLabel": {
+        "x": 5.7,
+        "y": 6.6,
+        "w": 7.1
+      },
+      "question": {
+        "x": 6,
+        "y": 13.32,
+        "w": 40.32,
+        "fontSize": 29
+      },
+      "image": null,
+      "keepOriginal": false
+    },
+    "boardPlan": {
+      "canvas": {
+        "w": 1726,
+        "h": 980
+      },
+      "layoutMode": "portrait",
+      "topicBottomPct": 27.99,
+      "topicLabel": {
+        "x": 5.7,
+        "y": 6.6,
+        "w": 7.1
+      },
+      "question": {
+        "x": 6,
+        "y": 13.32,
+        "w": 40.32,
+        "fontSize": 29
+      },
+      "image": null,
+      "analysisLabel": {
+        "x": 5.7,
+        "y": 34.5,
+        "w": 7.2
+      },
+      "analysis": {
+        "x": 6,
+        "y": 40.62,
+        "w": 44,
+        "h": 54.38
+      },
+      "solutionLabel": {
+        "x": 53.7,
+        "y": 6.6,
+        "w": 7.4
+      },
+      "solution": {
+        "x": 54,
+        "y": 14,
+        "w": 40,
+        "h": 44
+      },
+      "summaryLabel": {
+        "x": 53.7,
+        "y": 62,
+        "w": 7.2
+      },
+      "summary": {
+        "x": 54,
+        "y": 69.5,
+        "w": 40,
+        "h": 22
+      },
+      "plannedAt": "2026-09-12T00:25:25.843Z",
+      "method": "verified-layout-rule",
+      "overflow": false
+    },
+    "screenshotUrl": "/pic/shot-20260912-002529-462.jpg",
+    "meta": {
+      "problemType": "word",
+      "boardFocus": "mixed",
+      "gradeLevel": "小学阶段",
+      "knowledgeTitle": "核心知识点",
+      "canvasSize": {
+        "width": 1726,
+        "height": 980
+      }
+    },
+    "stats": {
+      "totalDuration": 267,
+      "totalDurationText": "4分27秒",
+      "stepCount": 6,
+      "charCount": 691,
+      "actionCount": 3
+    },
+    "checkInfo": {
+      "checkApplied": false,
+      "changeCount": 0
+    },
+    "rows": [
+      {
+        "stage": "题目",
+        "speech": "同学你好！很高兴为你讲解这道题！我们来看这道题：若干名战士排成8列的长方形队列，若增加120人或减少120人都能组成一个新的正方形队列，那么，原有战士多少人？",
+        "board": {
+          "startCoord": "",
+          "content": "",
+          "startDelay": 0
+        },
+        "actionSpec": [
+          {
+            "action": {
+              "tool": "rough-notation",
+              "action": "underline",
+              "target": {
+                "region": "question",
+                "exactText": "8列",
+                "occurrence": 1
+              },
+              "order": 1,
+              "options": {
+                "type": "underline",
+                "animate": true,
+                "color": "#d64545",
+                "strokeWidth": 2,
+                "padding": 5,
+                "iterations": 2,
+                "multiline": false,
+                "rtl": false
+              }
+            }
+          },
+          {
+            "action": {
+              "tool": "rough-notation",
+              "action": "underline",
+              "target": {
+                "region": "question",
+                "exactText": "增加120人或减少120人",
+                "occurrence": 1
+              },
+              "order": 2,
+              "options": {
+                "type": "underline",
+                "animate": true,
+                "color": "#d64545",
+                "strokeWidth": 2,
+                "padding": 5,
+                "iterations": 2,
+                "multiline": false,
+                "rtl": false
+              }
+            }
+          },
+          {
+            "action": {
+              "tool": "rough-notation",
+              "action": "underline",
+              "target": {
+                "region": "question",
+                "exactText": "正方形队列",
+                "occurrence": 1
+              },
+              "order": 3,
+              "options": {
+                "type": "underline",
+                "animate": true,
+                "color": "#d64545",
+                "strokeWidth": 2,
+                "padding": 5,
+                "iterations": 2,
+                "multiline": false,
+                "rtl": false
+              }
+            }
+          }
+        ],
+        "timingStatus": "estimated",
+        "timingSource": "agent-b-v2-1d-row-group",
+        "speechCharacters": 72,
+        "estimatedDurationMs": 28500,
+        "estimatedStartMs": 0,
+        "estimatedEndMs": 28500,
+        "rowTimeline": {
+          "speechDurationMs": 28500,
+          "boardStartDelayMs": 0,
+          "boardDurationMs": 0,
+          "boardEndDelayMs": 0,
+          "actionTimeline": [
+            {
+              "index": 0,
+              "action": {
+                "action": {
+                  "tool": "rough-notation",
+                  "action": "underline",
+                  "target": {
+                    "region": "question",
+                    "exactText": "8列",
+                    "occurrence": 1
+                  },
+                  "order": 1,
+                  "options": {
+                    "type": "underline",
+                    "animate": true,
+                    "color": "#d64545",
+                    "strokeWidth": 2,
+                    "padding": 5,
+                    "iterations": 2,
+                    "multiline": false,
+                    "rtl": false
+                  }
+                }
+              },
+              "startOffsetMs": 500,
+              "durationMs": 1200,
+              "endOffsetMs": 1700
+            },
+            {
+              "index": 1,
+              "action": {
+                "action": {
+                  "tool": "rough-notation",
+                  "action": "underline",
+                  "target": {
+                    "region": "question",
+                    "exactText": "增加120人或减少120人",
+                    "occurrence": 1
+                  },
+                  "order": 2,
+                  "options": {
+                    "type": "underline",
+                    "animate": true,
+                    "color": "#d64545",
+                    "strokeWidth": 2,
+                    "padding": 5,
+                    "iterations": 2,
+                    "multiline": false,
+                    "rtl": false
+                  }
+                }
+              },
+              "startOffsetMs": 2300,
+              "durationMs": 1200,
+              "endOffsetMs": 3500
+            },
+            {
+              "index": 2,
+              "action": {
+                "action": {
+                  "tool": "rough-notation",
+                  "action": "underline",
+                  "target": {
+                    "region": "question",
+                    "exactText": "正方形队列",
+                    "occurrence": 1
+                  },
+                  "order": 3,
+                  "options": {
+                    "type": "underline",
+                    "animate": true,
+                    "color": "#d64545",
+                    "strokeWidth": 2,
+                    "padding": 5,
+                    "iterations": 2,
+                    "multiline": false,
+                    "rtl": false
+                  }
+                }
+              },
+              "startOffsetMs": 4100,
+              "durationMs": 1200,
+              "endOffsetMs": 5300
+            }
+          ],
+          "handWorkEndMs": 5300,
+          "rowTotalDurationMs": 28500,
+          "globalStartMs": 0,
+          "globalEndMs": 28500
+        }
+      },
+      {
+        "stage": "分析",
+        "speech": "嗯，咱们先看这道题哈。诶，关键信息在这儿——排成8列，增加120人或减少120人……都能组成正方形队列。正方形队列是什么意思呀？对，就是每行每列人数一样多，也就是一个完全平方数，对吧？那原来的总人数呢，是8的倍数，是不是？8乘若干行，嗯。",
+        "board": {
+          "startCoord": "[8.0%, 42.0%]",
+          "content": "总人数 = 8 × n（n是行数）\n总人数 + 120 = a²（正方形）\n总人数 - 120 = b²（正方形）",
+          "startDelay": 1.5
+        },
+        "actionSpec": [],
+        "timingStatus": "estimated",
+        "timingSource": "agent-b-v2-1d-row-group",
+        "speechCharacters": 100,
+        "estimatedDurationMs": 45100,
+        "estimatedStartMs": 30000,
+        "estimatedEndMs": 75100,
+        "rowTimeline": {
+          "speechDurationMs": 45100,
+          "boardStartDelayMs": 1500,
+          "boardDurationMs": 17170,
+          "boardEndDelayMs": 18670,
+          "actionTimeline": [],
+          "handWorkEndMs": 18670,
+          "rowTotalDurationMs": 45100,
+          "globalStartMs": 30000,
+          "globalEndMs": 75100
+        }
+      },
+      {
+        "stage": "分析",
+        "speech": "好嘞，把这两个式子相减——a的平方 减 b的平方 等于多少呀？嗯，等于240！对吧？那a的平方减b的平方，咱们学过那个……平方差公式，还记得不？就是括号里a加b乘以括号里a减b，对吧？等于240。那接下来就是找哪两个数相乘等于240，而且这两个数还得是偶数，因为a加b和a减b同奇偶，240是偶数，所以它们都得是偶数。咱们把240的因子对列出来看看。",
+        "board": {
+          "startCoord": "[8.0%, 68.5%]",
+          "content": "a² - b² = 240\n(a+b)(a-b) = 240\n← 因子对都是偶数",
+          "startDelay": 1.5
+        },
+        "actionSpec": [],
+        "timingStatus": "estimated",
+        "timingSource": "agent-b-v2-1d-row-group",
+        "speechCharacters": 151,
+        "estimatedDurationMs": 64225,
+        "estimatedStartMs": 76600,
+        "estimatedEndMs": 140825,
+        "rowTimeline": {
+          "speechDurationMs": 64225,
+          "boardStartDelayMs": 1500,
+          "boardDurationMs": 12400,
+          "boardEndDelayMs": 13900,
+          "actionTimeline": [],
+          "handWorkEndMs": 13900,
+          "rowTotalDurationMs": 64225,
+          "globalStartMs": 76600,
+          "globalEndMs": 140825
+        }
+      },
+      {
+        "stage": "解答",
+        "speech": "来啊，咱们来解。240的因子对……一对一对来。嗯，括号里120, 2的话，算出来n不是整数，不行。再看看……括号里60, 4！诶，这个行！a加b等于60，a减b等于4，解出来a等于32，b等于28。代回去一验算——8乘以116加120等于1048……诶不对，32的平方是1024，嗯，8乘以116加120等于1024，对！8乘以116减120等于808，28的平方也是808，完美！所以n等于116，原有战士就是8乘以116，等于928人。",
+        "board": {
+          "startCoord": "[55.0%, 15.0%]",
+          "content": "\begin{aligned}\na^2 - b^2 &= 240 \\(a+b)(a-b) &= 240 \\(a+b, a-b) &= (60, 4) \\a &= 32, \b &= 28 \\8n + 120 &= 1024 \\n &= 116\text{（人）} \\8 \times 116 &= 928\text{（人）}\n\neq\begin{aligned}",
+          "startDelay": 1.2
+        },
+        "actionSpec": [],
+        "timingStatus": "estimated",
+        "timingSource": "agent-b-v2-1d-row-group",
+        "speechCharacters": 183,
+        "estimatedDurationMs": 83125,
+        "estimatedStartMs": 142325,
+        "estimatedEndMs": 225450,
+        "rowTimeline": {
+          "speechDurationMs": 83125,
+          "boardStartDelayMs": 1200,
+          "boardDurationMs": 55210,
+          "boardEndDelayMs": 56410,
+          "actionTimeline": [],
+          "handWorkEndMs": 56410,
+          "rowTotalDurationMs": 83125,
+          "globalStartMs": 142325,
+          "globalEndMs": 225450
+        }
+      },
+      {
+        "stage": "总结",
+        "speech": "好嘞，来总结一下哈。这道题考的是完全平方数和方程的结合。关键思路就是：总人数是8的倍数，增减120后是平方数，两式相减得平方差，再用平方差公式分解，枚举因子对找到唯一解。以后看到这种",
+        "board": {
+          "startCoord": "[55.0%, 70.0%]",
+          "content": "平方差 + 枚举因子对",
+          "startDelay": 1.5
+        },
+        "actionSpec": [],
+        "timingStatus": "estimated",
+        "timingSource": "agent-b-v2-1d-row-group",
+        "speechCharacters": 82,
+        "estimatedDurationMs": 35350,
+        "estimatedStartMs": 226950,
+        "estimatedEndMs": 262300,
+        "rowTimeline": {
+          "speechDurationMs": 35350,
+          "boardStartDelayMs": 1500,
+          "boardDurationMs": 3570,
+          "boardEndDelayMs": 5070,
+          "actionTimeline": [],
+          "handWorkEndMs": 5070,
+          "rowTotalDurationMs": 35350,
+          "globalStartMs": 226950,
+          "globalEndMs": 262300
+        }
+      },
+      {
+        "stage": "总结",
+        "speech": "路虽远，行则将至，加油！",
+        "board": {
+          "startCoord": "",
+          "content": "",
+          "startDelay": 0
+        },
+        "actionSpec": [],
+        "timingStatus": "estimated",
+        "timingSource": "agent-b-v2-1d-row-group",
+        "speechCharacters": 9,
+        "estimatedDurationMs": 4375,
+        "estimatedStartMs": 263800,
+        "estimatedEndMs": 268175,
+        "rowTimeline": {
+          "speechDurationMs": 4375,
+          "boardStartDelayMs": 0,
+          "boardDurationMs": 0,
+          "boardEndDelayMs": 0,
+          "actionTimeline": [],
+          "handWorkEndMs": 0,
+          "rowTotalDurationMs": 4375,
+          "globalStartMs": 263800,
+          "globalEndMs": 268175
+        }
+      }
+    ],
+    "projectCode": "20260912-002723-873",
+    "filename": "deliverable-20260912-002723-873.json",
+    "htmlFilename": "deliverable-20260912-002723-873.html",
+    "createdAt": "2026-09-12T00:27:23.873Z"
+  }
+}
