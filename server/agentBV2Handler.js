@@ -166,7 +166,7 @@ export async function handleAgentBV2Request(req, res) {
     // 坐标输出模式：percentage（百分比 0-100）或 pixel（像素，基于画布尺寸换算）
     // 下游生成真实画布视频时有的要像素坐标，由用户选择后告诉模型按对应格式输出
     if (body.canvasParams?.coordinateMode) {
-      userContent.push({ type: 'text', text: `【坐标输出模式】\ncoordinateMode: ${body.canvasParams.coordinateMode}\n说明：board.startCoord 和 actionSpec 中的所有坐标请按此模式输出。percentage = 百分比 0-100，pixel = 像素（基于 handoff.canvasParams.canvasSize 换算）。` })
+      userContent.push({ type: 'text', text: `【坐标输出模式】\ncoordinateMode: ${body.canvasParams.coordinateMode}\n说明：board.startCoord 和 actionSpec 中的��有坐标请按此模式输出。percentage = 百分比 0-100，pixel = 像素（基于 handoff.canvasParams.canvasSize 换算）。` })
     }
 
     // 明确告知本次画布舞台配置与视觉参考（canvasParams, boardPlan, zoneAnchors, screenshotUrl）
@@ -184,7 +184,9 @@ export async function handleAgentBV2Request(req, res) {
     if (promptHandoff.screenshotUrl) {
       stageSummary.push(`- 画布截图(screenshotUrl)：${promptHandoff.screenshotUrl}（支持视觉识别的模型可直观参考排版与真实留白）`)
     }
-    stageSummary.push(`- 起手坐标关键要求：row与row要有自然距离！不要粘在一起。注意容器高度（y + h）下边界。`)
+    stageSummary.push(`- 起手坐标关键要求：每个 row 是一个不可拆分的小组（口播 speech + 对应板书 board + 对应动作 actionSpec），三者必须描述同一个教学时刻；row 与 row 之间要有自然距离，不能粘在一起。`)
+    stageSummary.push(`- 坐标排版硬规则：同一 region 内相邻有板书内容的 row，起手 y 至少间隔一行手写字高；起手 x 至少保留一个字高的水平安全距离，优先使用 handoff 的 boardPlan/zoneAnchors，不要自行另造坐标真相。`)
+    stageSummary.push(`- 只有一份真相：handoff 的 boardPlan、zoneAnchors、canvasParams 是布局输入；当前 row 的 board.startCoord 是该行最终起手点；导出 speech/handoff/结果文件只能同步这些字段，不得各自推导另一套坐标或改写字符转义规则。`)
     stageSummary.push(`- 板书风格：板书内容可以乱一些都没事，达芬奇手稿那种微微乱感就很好。无需过度紧绷，代码层会自动进行行间距防重叠与边界兜底。`)
 
     userContent.push({

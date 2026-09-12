@@ -79,7 +79,8 @@ function startGeneratingTimer() {
   generatingStepIndex.value = 0
   clearInterval(generatingTimer)
   generatingTimer = setInterval(() => {
-    generatingStepIndex.value = (generatingStepIndex.value + 1) % GENERATING_STEPS.length
+    // 阶段进度只允许向前，避免长请求时从最后一阶段跳回第一阶段造成“加载卡住/倒退”的错觉。
+    generatingStepIndex.value = Math.min(generatingStepIndex.value + 1, GENERATING_STEPS.length - 1)
   }, 2800)
 }
 
@@ -1276,7 +1277,7 @@ function isRefineFieldEqual(original, refined) {
             </a-descriptions-item>
             <a-descriptions-item
               v-if="keyFormulaList.length"
-              label="关键公式"
+              label="关���公式"
               :span="2"
             >
               <div class="field-val-box wrap-box">
@@ -1446,7 +1447,7 @@ function isRefineFieldEqual(original, refined) {
               class="knowledge-chip"
               @click="selectedKnowledge = item"
             >
-              {{ item.knowledgePoint || '未命名知识点' }}
+              {{ item.knowledgePoint || '未命名知识���' }}
             </a-tag>
           </div>
         </a-card>
@@ -1968,7 +1969,7 @@ function isRefineFieldEqual(original, refined) {
                       />
                     </div>
                   </div>
-                  <div class="board-edit-label" style="margin-top: 6px;">板书内容 (支持 KaTeX):</div>
+                  <div class="board-edit-label" style="margin-top: 6px;">板���内容 (支持 KaTeX):</div>
                   <a-textarea
                     :value="parseBoard(record.board).content"
                     :auto-size="{ minRows: 2, maxRows: 8 }"

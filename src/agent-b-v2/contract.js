@@ -176,13 +176,22 @@ export function sanitizeRowLayout(rows, options = {}) {
   }
 
   const zoneTracker = {
-    question: { lastY: null, count: 0 },
-    analysis: { lastY: null, count: 0 },
-    solution: { lastY: null, count: 0 },
-    summary: { lastY: null, count: 0 },
+    question: { lastX: null, lastY: null, count: 0 },
+    analysis: { lastX: null, lastY: null, count: 0 },
+    solution: { lastX: null, lastY: null, count: 0 },
+    summary: { lastX: null, lastY: null, count: 0 },
   }
 
-  const minRowGap = isPixel ? 120 : 12.0
+  const canvasParams = options.canvasParams || {}
+  const fontSizePx = Number(canvasParams?.fontSize?.analysis || canvasParams?.fontSize?.solution || 38)
+  const lineHeight = Number(canvasParams?.lineHeight?.others || 1.7)
+  const canvasHeight = Number(canvasParams?.canvasSize?.height || 980)
+  // 相邻 row 至少留出一行手写字高；不能用固定 12% 覆盖真实区域高度。
+  const lineHeightPct = Number.isFinite(fontSizePx) && Number.isFinite(lineHeight) && canvasHeight > 0
+    ? (fontSizePx * lineHeight / canvasHeight) * 100
+    : 6.6
+  const minRowGap = isPixel ? Math.max(120, Math.round(fontSizePx * lineHeight)) : Number(Math.max(6.6, lineHeightPct).toFixed(2))
+  const minHorizontalGap = isPixel ? Math.max(38, Math.round(fontSizePx)) : Number(Math.max(2.2, (fontSizePx / 1726) * 100).toFixed(2))
 
   return rows.map((row, index) => {
     if (!isRecord(row)) return row
@@ -228,9 +237,16 @@ export function sanitizeRowLayout(rows, options = {}) {
       }
     }
 
-    // 容器高度防溢出：若超出容器下界，温和限位
+    // 同一 region 的 row 起手点必须在 x 轴保留至少一个字高的安全距离。
+    // 若右移会越过区域，则保留真实 x，依靠 y 轴字高间距排版，不覆盖模型有效坐标。
+    if (tracker.lastX !== null && Math.abs(coordX - tracker.lastX) < minHorizontalGap) {
+      const shiftedX = tracker.lastX + minHorizontalGap
+      if (shiftedX <= bounds.x + bounds.w - minHorizontalGap) coordX = shiftedX
+    }
+
+    // 容器高度防溢出：仅在区域仍有可落座空间时限位，不能把当前 row 拉回上一行造成重叠。
     const maxBottom = bounds.y + bounds.h - (isPixel ? 50 : 5.0)
-    if (coordY > maxBottom && maxBottom > bounds.y) {
+    if (coordY > maxBottom && maxBottom > bounds.y && (tracker.lastY === null || maxBottom >= tracker.lastY + minRowGap)) {
       coordY = Number(maxBottom.toFixed(1))
     }
 
@@ -244,6 +260,7 @@ export function sanitizeRowLayout(rows, options = {}) {
     // 估算本行板书所占高度（换行数）
     const lineCount = Math.max(1, content.split('\n').length)
     const estHeight = isPixel ? (lineCount * 40 + 25) : (lineCount * 4.0 + 2.5)
+    tracker.lastX = coordX
     tracker.lastY = coordY + estHeight
     tracker.count += 1
 

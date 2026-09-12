@@ -220,7 +220,7 @@ export async function handleCheckAgentRequest(req, res) {
     const userContent = [
       {
         type: 'text',
-        text: `【坐标输出模式】\n${coordinateMode}`,
+        text: `【坐标输出模式】\n${coordinateMode}\n用户点击 Check 时的当前五字段是唯一待审计输入。`,
       },
       {
         type: 'text',
@@ -228,7 +228,7 @@ export async function handleCheckAgentRequest(req, res) {
       },
       {
         type: 'text',
-        text: `【当前 B 生成结果四字段】\n${JSON.stringify(originalRows, null, 2)}`,
+        text: `【用户点击 Check 时的当前五字段】\n${JSON.stringify(originalRows, null, 2)}`,
       },
     ]
 
