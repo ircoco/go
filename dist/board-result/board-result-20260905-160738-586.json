@@ -1,0 +1,40 @@
+{
+  "rows": [
+    {
+      "stage": "题目",
+      "speech": "我们先读题。",
+      "board": {
+        "startCoord": "",
+        "content": ""
+      },
+      "actionSpec": []
+    },
+    {
+      "stage": "分析",
+      "speech": "我们开始分析。",
+      "board": {
+        "startCoord": "",
+        "content": "分析内容"
+      },
+      "actionSpec": []
+    },
+    {
+      "stage": "分析",
+      "speech": "我们继续分析。",
+      "board": {
+        "startCoord": "",
+        "content": "继续分析"
+      },
+      "actionSpec": []
+    }
+  ],
+  "model": "claude-sonnet-4-6",
+  "skillId": "default-fallback",
+  "handoff": {
+    "problemImage": "data:image/png;base64,PROBLEM",
+    "previewDataUrl": "data:image/png;base64,PREVIEW"
+  },
+  "usage": null,
+  "finishReason": "end_turn",
+  "createdAt": "2026-09-05T16:07:38.586Z"
+}
