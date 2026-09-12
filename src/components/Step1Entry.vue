@@ -224,7 +224,7 @@ const canConfirm = computed(() => {
 })
 
 const statusText = computed(() => {
-  if (step1Confirmed.value) return '第1步已确认：题目已落在甲方画布题目层。'
+  if (step1Confirmed.value) return '第1步已���认：题目已落在甲方画布题目层。'
   if (recognizeStatus.value === 'loading') return '识别中，识别完直接贴上画布…'
   if (layoutStatus.value === 'regenerating') return '按画布重新落位…'
   if (!hasBoardContent.value) return '初始是空白甲方画布。贴题后，题目直接放上去。'
@@ -665,6 +665,12 @@ function pct(style) {
 
 <template>
   <a-layout class="qh-page">
+    <div v-if="recognizeStatus === 'loading'" class="qh-loading-overlay" role="status" aria-live="polite">
+      <div class="qh-loading-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="qh-loading-title">正在分析题目<span class="qh-loading-dots">...</span></div>
+      <div class="qh-loading-subtitle">正在识别条件、判断题型并规划画布落位</div>
+      <div class="qh-loading-progress"><span></span></div>
+    </div>
     <QhPageHeader step-label="第 1 步 · 生产车间" subtitle="识别 → 真画布落位">
       <template #actions>
         <a-tag :color="userApiConfig.endpoint ? 'purple' : 'default'">{{ agentSummary }}</a-tag>

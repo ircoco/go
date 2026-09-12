@@ -1,0 +1,794 @@
+{
+  "rows": [
+    {
+      "stage": "题目",
+      "speech": "同学你好！很高兴为你讲解这道题！我们一起来读一下题目哈：若干名战士排成8列的长方形队列，如果增加120人或者减少120人，都能组成一个新的正方形队列。那么，原来有多少战士呢？",
+      "board": {
+        "startCoord": "",
+        "content": ""
+      },
+      "actionSpec": [
+        {
+          "action": {
+            "tool": "rough-notation",
+            "action": "underline",
+            "target": {
+              "region": "question",
+              "exactText": "8列的长方形队列",
+              "occurrence": 1
+            },
+            "order": 1,
+            "options": {
+              "type": "underline",
+              "animate": true,
+              "color": "#d64545",
+              "strokeWidth": 2,
+              "padding": 5,
+              "iterations": 2,
+              "multiline": false,
+              "rtl": false
+            }
+          }
+        },
+        {
+          "action": {
+            "tool": "rough-notation",
+            "action": "underline",
+            "target": {
+              "region": "question",
+              "exactText": "增加120人",
+              "occurrence": 1
+            },
+            "order": 2,
+            "options": {
+              "type": "underline",
+              "animate": true,
+              "color": "#d64545",
+              "strokeWidth": 2,
+              "padding": 5,
+              "iterations": 2,
+              "multiline": false,
+              "rtl": false
+            }
+          }
+        },
+        {
+          "action": {
+            "tool": "rough-notation",
+            "action": "underline",
+            "target": {
+              "region": "question",
+              "exactText": "减少120人",
+              "occurrence": 1
+            },
+            "order": 3,
+            "options": {
+              "type": "underline",
+              "animate": true,
+              "color": "#d64545",
+              "strokeWidth": 2,
+              "padding": 5,
+              "iterations": 2,
+              "multiline": false,
+              "rtl": false
+            }
+          }
+        },
+        {
+          "action": {
+            "tool": "rough-notation",
+            "action": "underline",
+            "target": {
+              "region": "question",
+              "exactText": "都能组成一个新的正方形队列",
+              "occurrence": 1
+            },
+            "order": 4,
+            "options": {
+              "type": "underline",
+              "animate": true,
+              "color": "#d64545",
+              "strokeWidth": 2,
+              "padding": 5,
+              "iterations": 2,
+              "multiline": false,
+              "rtl": false
+            }
+          }
+        },
+        {
+          "action": {
+            "tool": "rough-notation",
+            "action": "underline",
+            "target": {
+              "region": "question",
+              "exactText": "原有战士",
+              "occurrence": 1
+            },
+            "order": 5,
+            "options": {
+              "type": "underline",
+              "animate": true,
+              "color": "#d64545",
+              "strokeWidth": 2,
+              "padding": 5,
+              "iterations": 2,
+              "multiline": false,
+              "rtl": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "stage": "分析",
+      "speech": "嗯，这道题啊，我们先来看看它说的“正方形队列”。正方形队列，意思就是战士的人数呢，可以排成一个边长相同的正方形。那这样的话，人数就一定是完全平方数，对吧？嗯……比如1人（1x1），4人（2x2），9人（3x3）……这样下去。那这道题呢，又说了，原有战士人数，如果增加120人或者减少120人，都能变成正方形队列。咱们就假设原来的战士人数是x人哈。",
+      "board": {
+        "startCoord": "[6, 41]",
+        "content": "设原有战士人数为 x 人\n正方形队列人数是完全平方数\n如：1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, ..."
+      },
+      "actionSpec": [
+        {
+          "action": {
+            "tool": "rough-line",
+            "region": "analysis",
+            "order": 6,
+            "style": {
+              "colorId": "red",
+              "strokeWidthId": "normal"
+            },
+            "start": [
+              6,
+              41
+            ],
+            "end": [
+              35,
+              41
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage": "分析",
+      "speech": "诶，那我们根据题目条件，就可以列出两个式子哈。一个呢，是 x 加上 120 人，会变成一个正方形人数，对吧？另一个呢，是 x 减去 120 人，也会变成一个正方形人数。那我们用字母来表示这两个正方形人数，比如，x+120等于a的平方，x-120等于b的平方。这里的a和b呢，都得是整数，对不对？因为战士人数不能是小数哈。",
+      "board": {
+        "startCoord": "[6, 55]",
+        "content": "x + 120 = a²\nx - 120 = b²\n(a, b 为整数，且 a > b)"
+      },
+      "actionSpec": [
+        {
+          "action": {
+            "tool": "rough-line",
+            "region": "analysis",
+            "order": 7,
+            "style": {
+              "colorId": "red",
+              "strokeWidthId": "normal"
+            },
+            "start": [
+              6,
+              55
+            ],
+            "end": [
+              40,
+              55
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage": "分析",
+      "speech": "好，现在我们有两个等式了，怎么求x呢？你看，我们把第二个式子从第一个式子里面减去，会怎么样呢？减完之后，a² 减 b² 等于什么呀？嗯……就等于 (x+120) 减去 (x-120)，对吧？那这样的话，a² 减 b² 就等于 120 减去负120，最后是 240。诶，这个式子是不是很熟悉呀？a² 减 b²，这不就是咱们学过的平方差公式嘛！",
+      "board": {
+        "startCoord": "[6, 68]",
+        "content": "a² - b² = (x + 120) - (x - 120)\na² - b² = 240"
+      },
+      "actionSpec": [
+        {
+          "action": {
+            "tool": "rough-line",
+            "region": "analysis",
+            "order": 8,
+            "style": {
+              "colorId": "red",
+              "strokeWidthId": "normal"
+            },
+            "start": [
+              6,
+              68
+            ],
+            "end": [
+              40,
+              68
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage": "分析",
+      "speech": "对啦！就是平方差公式，a² - b² 等于 (a+b) 乘以 (a-b)。所以呢，咱们就有 (a+b) 乘以 (a-b) 等于 240。现在，a 和 b 都是整数，对吧？那 a+b 和 a-b 也一定是整数。而且，因为 a² 比 b² 大，所以 a 肯定比 b 大，那 a+b 肯定也比 a-b 大。嗯，还有，a+b 和 a-b 的和是 (a+b)+(a-b) = 2a，是个偶数；它们的差是 (a+b)-(a-b) = 2b，也是个偶数。所以呀，a+b 和 a-b 这两个数，它们要么都是偶数，要么都是奇数。那它们的和与差都是偶数，就说明它们俩呀，必须得同时是偶数！",
+      "board": {
+        "startCoord": "[6, 82]",
+        "content": "a² - b² = (a+b)(a-b) = 240\n(a+b) > (a-b)\n(a+b) 和 (a-b) 都是偶数"
+      },
+      "actionSpec": [
+        {
+          "action": {
+            "tool": "rough-line",
+            "region": "analysis",
+            "order": 9,
+            "style": {
+              "colorId": "red",
+              "strokeWidthId": "normal"
+            },
+            "start": [
+              6,
+              82
+            ],
+            "end": [
+              40,
+              82
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage": "解答",
+      "speech": "好嘞，那咱们就来找一找，240 的两个偶数因数，并且大的那个是小的那个的 (a+b) 和 (a-b) 的关系。我们来看看 240 的因数有哪些哈，比如 12 和 20，20 乘 12 等于 240，而且 20 和 12 都是偶数，20 大于 12。那我们是不是可以令 a+b 等于 20，a-b 等于 12 呀？",
+      "board": {
+        "startCoord": "[54, 14]",
+        "content": "a+b = 20\na-b = 12"
+      },
+      "actionSpec": [
+        {
+          "action": {
+            "tool": "rough-arrow",
+            "region": "solution",
+            "order": 10,
+            "style": {
+              "colorId": "ink",
+              "strokeWidthId": "emphasis"
+            },
+            "start": [
+              54,
+              14
+            ],
+            "end": [
+              80,
+              14
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage": "解答",
+      "speech": "那现在我们来解这个方程组。把两个式子加起来，(a+b)+(a-b) = 20+12，也就是 2a 等于 32，所以 a 就等于 16。再把 a=16 代入第一个式子，16+b=20，那 b 就等于 4。嗯，我们找到了 a 和 b 的值了！",
+      "board": {
+        "startCoord": "[54, 22]",
+        "content": "2a = 32  => a = 16\n16 + b = 20 => b = 4"
+      },
+      "actionSpec": [
+        {
+          "action": {
+            "tool": "rough-arrow",
+            "region": "solution",
+            "order": 11,
+            "style": {
+              "colorId": "ink",
+              "strokeWidthId": "emphasis"
+            },
+            "start": [
+              54,
+              22
+            ],
+            "end": [
+              80,
+              22
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage": "解答",
+      "speech": "好，那我们已经知道了 a 和 b 的值，现在就可以求原来的战士人数 x 了。还记得吗？x+120 等于 a²，也就是 16 的平方。16 的平方是多少呀？嗯，16 乘以 16 等于 256。那 x+120=256，所以 x 就等于 256 减 120，最后算出来是 136 人。我们再用另一个式子验算一下哈，x 减 120 等于 b²，就是 136 减 120 等于 16，而 b 是 4，4 的平方也正好是 16！太棒了！所以，原有的战士人数是 136 人。",
+      "board": {
+        "startCoord": "[54, 30]",
+        "content": "x = a² - 120 = 16² - 120 = 256 - 120 = 136\n验算：x = b² + 120 = 4² + 120 = 16 + 120 = 136"
+      },
+      "actionSpec": [
+        {
+          "action": {
+            "tool": "rough-arrow",
+            "region": "solution",
+            "order": 12,
+            "style": {
+              "colorId": "ink",
+              "strokeWidthId": "emphasis"
+            },
+            "start": [
+              54,
+              30
+            ],
+            "end": [
+              80,
+              30
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage": "总结",
+      "speech": "好，我们来总结一下这道题哈。这道题考的是完全平方数和平方差公式的应用。关键在于理解“正方形队列”的人数一定是完全平方数，然后根据题意列出含两个未知数的等式，再利用平方差公式转化成一个含有两个因数的等式。最后，需要找到符合条件的因数对，并解出原有的战士人数。以后再遇到类似的问题，比如增加或减少某个数后变成完全平方数，咱们就可以用这个方法来解决啦！路虽远，行则将至，加油！",
+      "board": {
+        "startCoord": "[54, 69.5]",
+        "content": "核心：\n1. 正方形队列=完全平方数\n2. 平方差公式：a²-b²=(a+b)(a-b)\n3. 找因数对，解方程"
+      },
+      "actionSpec": []
+    }
+  ],
+  "model": "gemini-2.5-flash-lite",
+  "skillId": "default-fallback",
+  "handoff": {
+    "handoffVersion": 1,
+    "confirmedAt": "2026-08-23T18:58:36.224Z",
+    "problemText": "若干名战士排成8列的长方形队列，若增加120人或减少120人都能组成一个新的正方形队列，那么，原有战士（　　）人。",
+    "problemType": "word",
+    "boardFocus": "relation_understanding",
+    "relatedKnowledge": [
+      {
+        "编号": "kp_117",
+        "学段": "1-2年级",
+        "系列": "平面图形认识系列",
+        "类型": "图形与几何",
+        "知识点": "认识长方形、正方形、三角形、圆",
+        "经典样题": "识别或画出基本平面图形",
+        "考点": "四种基本图形的特征",
+        "策略方法": "观察实物→抽象出图形→对比特征→区分命名",
+        "讲解要点举例": "①长方形：有四条边、对边相等、四个角都是直角→②正方形：四条边都相等、四个角都是直角→③三角形：有三条边、三个角→④圆：由曲线围成、没有角",
+        "易错点": "长方形和正方形搞混；把倾斜的正方形说成菱形",
+        "总结归纳": "“长方形对边相等，正方形四条边都相等。三角形有三条边，圆是曲线的没有角。”"
+      },
+      {
+        "编号": "kp_122",
+        "学段": "3年级",
+        "系列": "周长系列",
+        "类型": "图形与几何",
+        "知识点": "长方形和正方形的周长",
+        "经典样题": "给长和宽（或边长），求周长",
+        "考点": "长方形周长=(长+宽)×2；正方形周长=边长×4",
+        "策略方法": "长方形周长=(长+宽)×2→正方形周长=边长×4",
+        "讲解要点举例": "①周长=围成图形一周的长度→②长方形：2条长+2条宽→③公式：(长+宽)×2→④正方形：4条边相等→⑤公式：边长×4",
+        "易错点": "长方形周长写成长×2+宽（忘加括号）；单位忘记写",
+        "总结归纳": "“周长是一圈的长度。长方形周长用长加宽的和乘2，正方形周长用边长乘4。”"
+      },
+      {
+        "编号": "kp_125",
+        "学段": "3-4年级",
+        "系列": "面积系列",
+        "类型": "图形与几何",
+        "知识点": "长方形和正方形的面积",
+        "经典样题": "给长和宽（或边长），求面积",
+        "考点": "长方形面积=长×宽；正方形面积=边长×边长",
+        "策略方法": "长方形面积=长×宽→正方形面积=边长×边长",
+        "讲解要点举例": "①面积=长×宽（每行几个×几行）→②长方形：长×宽→③正方形：边长×边长→④面积单位用平方单位",
+        "易错点": "面积和周长公式搞混（用了加不用乘）；忘记写平方单位",
+        "总结归纳": "“长方形面积用长乘宽，正方形面积用边长乘边长。面积单位是平方单位，别和周长搞混了。”"
+      },
+      {
+        "编号": "kp_139",
+        "学段": "3-6年级",
+        "系列": "几何形体系列",
+        "类型": "周长公式",
+        "知识点": "长方形的周长",
+        "经典样题": "长5cm，宽3cm的长方形周长是多少？",
+        "考点": "周长计算",
+        "策略方法": "使用（长+宽）×2 或 边长×4 计算周长，注意单位统一。",
+        "讲解要点举例": "长方形周长=（长+宽）×2，单位要统一。",
+        "易错点": "计算长方形周长时忘记乘以2。；计算时长度单位不一致。",
+        "总结归纳": "长方形对边相等，周长是四条边之和。"
+      },
+      {
+        "编号": "kp_118",
+        "学段": "2-3年级",
+        "系列": "平面图形认识系列",
+        "类型": "图形与几何",
+        "知识点": "认识角、直角、锐角、钝角",
+        "经典样题": "需要判断角的类型或比较角的大小",
+        "考点": "直角=90°，锐角<90°，钝角>90°",
+        "策略方法": "角有一个顶点两条边→用三角板比→比直角小为锐角→比直角大为钝角",
+        "讲解要点举例": "①角由顶点和两条边组成→②直角=90°→③用三角板测量→④比直角小的角是锐角→⑤比直角大的角是钝角",
+        "易错点": "锐角和钝角标准搞反；角的大小与边的长短无关",
+        "总结归纳": "“用三角板的直角去比。比直角小是锐角，比直角大是钝角。角的大小看张口，和边长没关系。”"
+      },
+      {
+        "编号": "kp_123",
+        "学段": "3-4年级",
+        "系列": "周长系列",
+        "类型": "图形与几何",
+        "知识点": "周长的实际应用",
+        "经典样题": "实际情境中求周长（围篱笆、跑圈等）",
+        "考点": "周长实际应用：依据图形类型选择公式，注意单位统一",
+        "策略方法": "读题→判断图形类型→确定已知边长→套公式→注意单位→写答句",
+        "讲解要点举例": "①读题理解实际情境→②确定是什么图形→③提取或计算需要的边长→④运用周长公式→⑤注意单位统一→⑥检验结果的合理性",
+        "易错点": "靠墙围的图形忘减掉靠墙边；跑道几圈忘乘圈数",
+        "总结归纳": "“周长应用要看清楚题目条件。图形靠墙的，算周长要减掉靠墙那边。有圈数的要用一圈长乘圈数。”"
+      }
+    ],
+    "knowledgeAnalysis": {
+      "suggestedGrade": "5-6年级",
+      "coreKnowledge": [
+        {
+          "knowledgeId": "kp_243",
+          "knowledgePoint": "等差数列的概念",
+          "formula": "",
+          "examinationPoint": "等差数列",
+          "strategy": "等差数列是按照一定规律排列的一列数，相邻两项的差相等。",
+          "commonMistakes": [
+            "等差数列的规律理解错误。"
+          ],
+          "summary": "等差数列：第二项起，每一项与它的前一项的差等于同一个常数。",
+          "rawKnowledgeRecord": {
+            "编号": "kp_243",
+            "学段": "5-6年级",
+            "系列": "数列与序列系列",
+            "类型": "等差数列",
+            "知识点": "等差数列的概念",
+            "经典样题": "1, 3, 5, 7, 9... 是等差数列吗？",
+            "考点": "等差数列",
+            "策略方法": [
+              "等差数列是按照一定规律排列的一列数，相邻两项的差相等。"
+            ],
+            "讲解要点举例": "等差数列是相邻两项的差相等的数列。",
+            "总结归纳": "等差数列：第二项起，每一项与它的前一项的差等于同一个常数。",
+            "易错点": [
+              "等差数列的规律理解错误。"
+            ]
+          }
+        },
+        {
+          "knowledgeId": "kp_249",
+          "knowledgePoint": "等差数列的求和公式",
+          "formula": "a² - b² = (a+b)(a-b)",
+          "examinationPoint": "等差数列",
+          "strategy": "等差数列的求和公式：Sn=(a1+an)×n÷2。",
+          "commonMistakes": [
+            "等差数列求和公式中a1或an计算错误。"
+          ],
+          "summary": "求和公式：Sn=(a1+an)×n÷2，和=(首项+末项)×项数÷2。",
+          "rawKnowledgeRecord": {
+            "编号": "kp_249",
+            "学段": "5-6年级",
+            "系列": "数列与序列系列",
+            "类型": "等差数列",
+            "知识点": "等差数列的求和公式",
+            "经典样题": "1+2+3+4+...+180的和是多少？",
+            "考点": "等差数列",
+            "策略方法": [
+              "等差数列的求和公式：Sn=(a1+an)×n÷2。"
+            ],
+            "讲解要点举例": "和=(首项+末项)×项数÷2。",
+            "总结归纳": "求和公式：Sn=(a1+an)×n÷2，和=(首项+末项)×项数÷2。",
+            "易错点": [
+              "等差数列求和公式中a1或an计算错误。"
+            ]
+          }
+        },
+        {
+          "knowledgeId": "kp_95",
+          "knowledgePoint": "加减法简单应用题（求总数、求剩余）",
+          "formula": "总数 = 每份数 × 份数",
+          "examinationPoint": "求总数用加法，求剩余用减法",
+          "strategy": "读题→判断“合起来”还是“拿走”→选择加法或减法→列式→口算",
+          "commonMistakes": [
+            "看到“多”就用加、“少”就用减（不全面）",
+            "忘记写答句"
+          ],
+          "summary": "“合起来用加法，拿走用减法。算完别忘了写答句。”",
+          "rawKnowledgeRecord": {
+            "编号": "kp_95",
+            "学段": "1-2年级",
+            "系列": "简单应用题系列",
+            "类型": "应用题（含解题策略）",
+            "知识点": "加减法简单应用题（求总数、求剩余）",
+            "经典样题": "情境简单，一步加减可解",
+            "考点": "求总数用加法，求剩余用减法",
+            "策略方法": [
+              "读题→判断“合起来”还是“拿走”→选择加法或减法→列式→口算"
+            ],
+            "讲解要点举例": "①读题理解→②“一共”“合起来”用加法→③“还剩”“拿走”用减法→④列式计算→⑤写答句",
+            "总结归纳": "“合起来用加法，拿走用减法。算完别忘了写答句。”",
+            "易错点": [
+              "看到“多”就用加、“少”就用减（不全面）",
+              "忘记写答句"
+            ]
+          }
+        }
+      ],
+      "teachingFocus": "理解方阵问题的本质——正方形队列即完全平方数，将文字条件转化为代数方程，利用平方差公式求解",
+      "keyFormulaList": [
+        "a² - b² = (a+b)(a-b)",
+        "正方形队列人数 = n²（完全平方数）",
+        "长方形队列人数 = 列数 × 行数"
+      ]
+    },
+    "suggestedGrade": "5-6年级",
+    "uncertainItems": [],
+    "suggestedLayout": {
+      "canvas": "1726x980",
+      "type": "left_right",
+      "zones": [
+        {
+          "id": "topic",
+          "x": "6%",
+          "y": "5%",
+          "w": "45%",
+          "h": null
+        },
+        {
+          "id": "analysis",
+          "x": "53%",
+          "y": "5%",
+          "w": "45%",
+          "h": null
+        },
+        {
+          "id": "solution",
+          "x": "6%",
+          "y": "52%",
+          "w": "45%",
+          "h": null
+        },
+        {
+          "id": "summary",
+          "x": "53%",
+          "y": "52%",
+          "w": "45%",
+          "h": null
+        }
+      ]
+    },
+    "imageKind": "text_only",
+    "keepOriginal": false,
+    "coordinateSpec": {
+      "coordinateSystem": "百分比坐标（0—100），原点左上",
+      "format": {
+        "region": "区域：[左%, 上%, 宽%, 高%]，所有百分比最多保留 2 位小数",
+        "point": "起点/终点：[x%, y%]"
+      },
+      "example": "若分析区起手坐标为 (6%, 41%)，则动作点为 [6, 41]"
+    },
+    "zoneAnchors": {
+      "question": {
+        "label": {
+          "x": 5.7,
+          "y": 6.6,
+          "w": 7.1
+        },
+        "labelStartCoord": {
+          "x": 5.7,
+          "y": 6.6
+        },
+        "regionStartCoord": {
+          "x": 6,
+          "y": 13.32,
+          "w": 40.32,
+          "h": null
+        }
+      },
+      "analysis": {
+        "label": {
+          "x": 5.7,
+          "y": 34.5,
+          "w": 7.2
+        },
+        "labelStartCoord": {
+          "x": 5.7,
+          "y": 34.5
+        },
+        "regionStartCoord": {
+          "x": 6,
+          "y": 40.62,
+          "w": 44,
+          "h": 54.38
+        }
+      },
+      "solution": {
+        "label": {
+          "x": 53.7,
+          "y": 6.6,
+          "w": 7.4
+        },
+        "labelStartCoord": {
+          "x": 53.7,
+          "y": 6.6
+        },
+        "regionStartCoord": {
+          "x": 54,
+          "y": 14,
+          "w": 40,
+          "h": 44
+        }
+      },
+      "summary": {
+        "label": {
+          "x": 53.7,
+          "y": 62,
+          "w": 7.2
+        },
+        "labelStartCoord": {
+          "x": 53.7,
+          "y": 62
+        },
+        "regionStartCoord": {
+          "x": 54,
+          "y": 69.5,
+          "w": 40,
+          "h": 22
+        }
+      }
+    },
+    "topicLayout": {
+      "topicLabel": {
+        "x": 5.7,
+        "y": 6.6,
+        "w": 7.1
+      },
+      "question": {
+        "x": 6,
+        "y": 13.32,
+        "w": 40.32,
+        "fontSize": 29
+      },
+      "image": null,
+      "keepOriginal": false
+    },
+    "boardPlan": {
+      "canvas": {
+        "w": 1726,
+        "h": 980
+      },
+      "layoutMode": "portrait",
+      "topicBottomPct": 27.99,
+      "topicLabel": {
+        "x": 5.7,
+        "y": 6.6,
+        "w": 7.1
+      },
+      "question": {
+        "x": 6,
+        "y": 13.32,
+        "w": 40.32,
+        "fontSize": 29
+      },
+      "image": null,
+      "analysisLabel": {
+        "x": 5.7,
+        "y": 34.5,
+        "w": 7.2
+      },
+      "analysis": {
+        "x": 6,
+        "y": 40.62,
+        "w": 44,
+        "h": 54.38
+      },
+      "solutionLabel": {
+        "x": 53.7,
+        "y": 6.6,
+        "w": 7.4
+      },
+      "solution": {
+        "x": 54,
+        "y": 14,
+        "w": 40,
+        "h": 44
+      },
+      "summaryLabel": {
+        "x": 53.7,
+        "y": 62,
+        "w": 7.2
+      },
+      "summary": {
+        "x": 54,
+        "y": 69.5,
+        "w": 40,
+        "h": 22
+      },
+      "plannedAt": "2026-08-23T18:58:32.454Z",
+      "method": "verified-layout-rule",
+      "overflow": false
+    },
+    "canvasParams": {
+      "canvasSize": {
+        "width": 1726,
+        "height": 980,
+        "unit": "px",
+        "origin": "左上角(0,0), X向右Y向下"
+      },
+      "coordinateSystem": "百分比坐标 0-100",
+      "fontSize": {
+        "question": {
+          "px": 30,
+          "family": "Segoe UI/PingFang SC/Microsoft YaHei（印刷体）",
+          "color": "黑色"
+        },
+        "analysis": {
+          "px": 38,
+          "family": "LikeJianJianTi（手写尖尖体）",
+          "color": "红色"
+        },
+        "solution": {
+          "px": 38,
+          "family": "LikeJianJianTi（手写尖尖体）",
+          "color": "黑色"
+        },
+        "summary": {
+          "px": 38,
+          "family": "LikeJianJianTi（手写尖尖体）",
+          "color": "黑色"
+        }
+      },
+      "lineHeight": {
+        "question": 1.65,
+        "others": "约 1.7（下游渲染会做 1.55-1.85 微小随机，B 按平均值估算即可）"
+      },
+      "letterSpacing": {
+        "question": "0",
+        "others": "下游渲染参数：0-2px 微小随机（模拟手写感，B 不需要处理）"
+      },
+      "boardSpeed": "下游渲染参数：1秒约2个汉字，每行±10%轻微抖动（B 不需要处理速度细节）",
+      "actionSpeed": "差不多同样速度（rough-line/rough-arrow/rough-notation绘制速度）",
+      "lineHeightFormula": "每行高度(px)≈字号×行高；每行高度(%)=每行高度(px)/980×100。示例：32px×1.7=54.4px≈5.55%画布高度，即每写一行y约增5.5%"
+    },
+    "showGrid": true,
+    "agentPageName": "第1步 · 贴题识别",
+    "agentCapability": "multimodal",
+    "screenshotUrl": "/pic/shot-20260824-025835-738.jpg",
+    "knowledgeBasePath": "doc/knowledge-a.compact.json",
+    "stageRatioSuggestion": {
+      "type": "b",
+      "cuCode": "CU-03",
+      "category": "方法确定",
+      "topicExamples": "长方形&正方形(面积/周长)、平行四边形/梯形(面积)、植树、鸡兔同笼(假设)、归一、税率、利润利率、比和比例",
+      "suggestedRatio": {
+        "analysis": "5-15%",
+        "solution": "55-65%",
+        "summary": "5-10%",
+        "introAndClosing": "23%"
+      },
+      "essence": "解答绝对主体，标准结构",
+      "confidence": "high"
+    }
+  },
+  "usage": {
+    "prompt_tokens": 14148,
+    "completion_tokens": 3157,
+    "total_tokens": 17305,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "text_tokens": 14148,
+      "audio_tokens": 0,
+      "image_tokens": 0
+    },
+    "completion_tokens_details": {
+      "text_tokens": 0,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0
+    },
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "input_tokens_details": null,
+    "claude_cache_creation_5_m_tokens": 0,
+    "claude_cache_creation_1_h_tokens": 0
+  },
+  "finishReason": "stop",
+  "createdAt": "2026-08-23T18:59:51.683Z"
+}

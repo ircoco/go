@@ -1069,7 +1069,19 @@ function isRefineFieldEqual(original, refined) {
 
 <template>
   <a-layout class="qh-page">
-    <QhPageHeader
+  <div v-if="state === 'generating'" class="qh-loading-overlay" role="status" aria-live="polite">
+    <div class="qh-loading-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="qh-loading-kicker">AI 教研工作台 · {{ generatingStepIndex + 1 }} / {{ GENERATING_STEPS.length }}</div>
+    <Transition name="qh-loading-copy" mode="out-in">
+      <div :key="generatingStepIndex" class="qh-loading-copy">
+        <div class="qh-loading-title">{{ GENERATING_STEPS[generatingStepIndex].title }}<span class="qh-loading-dots">...</span></div>
+        <div class="qh-loading-subtitle">{{ GENERATING_STEPS[generatingStepIndex].desc }}</div>
+      </div>
+    </Transition>
+    <div class="qh-loading-progress"><span :style="{ width: `${((generatingStepIndex + 1) / GENERATING_STEPS.length) * 100}%` }"></span></div>
+    <div class="qh-loading-note">请稍候，正在为这道题组织一条温柔、循序的讲解路径</div>
+  </div>
+  <QhPageHeader
       step-label="第 2 步 · Agent B"
       subtitle="题目信息 → 五字段"
       show-back
